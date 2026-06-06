@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="820" height="1420" viewBox="0 0 820 1420">
+  <ns0:defs>
+    <ns0:marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse">
+      <ns0:path d="M 0 0 L 12 6 L 0 12 z" fill="#000000" />
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:polyline points="410.00,82.00 410.00,110.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="410.00,180.00 410.00,230.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="410.00,320.00 410.00,360.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="410.00,450.00 410.00,490.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="410.00,550.00 410.00,610.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="285.00,657.00 180.00,657.00 180.00,770.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="535.00,657.00 640.00,657.00 640.00,760.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="180.00,850.00 180.00,900.00 410.00,900.00 410.00,930.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="640.00,852.00 640.00,900.00 410.00,900.00 410.00,930.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="410.00,990.00 410.00,1030.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="410.00,1090.00 410.00,1130.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="410.00,1190.00 410.00,1230.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="410.00,1290.00 410.00,1330.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="510.00,275.00 690.00,275.00 690.00,405.00 620.00,405.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="510.00,405.00 620.00,405.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:rect x="320.00" y="30.00" width="180.00" height="52.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" rx="22" ry="22" />
+  <ns0:text x="410.00" y="59.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="410.00">Начало</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="275.00" y="110.00" width="270.00" height="70.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="410.00" y="139.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="410.00">Найти запись приема</ns0:tspan>
+    <ns0:tspan x="410.00" dy="19.52">врача с FOR UPDATE</ns0:tspan>
+  </ns0:text>
+  <ns0:polygon points="410.00,230.00 510.00,275.00 410.00,320.00 310.00,275.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="410.00" y="278.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="bold" fill="#000000">
+    <ns0:tspan x="410.00">Запись найдена?</ns0:tspan>
+  </ns0:text>
+  <ns0:polygon points="410.00,360.00 510.00,405.00 410.00,450.00 310.00,405.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="410.00" y="408.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="bold" fill="#000000">
+    <ns0:tspan x="410.00">Статус = booked?</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="300.00" y="490.00" width="220.00" height="60.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="410.00" y="514.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="410.00">Создать запись</ns0:tspan>
+    <ns0:tspan x="410.00" dy="19.52">в visits</ns0:tspan>
+  </ns0:text>
+  <ns0:polygon points="410.00,610.00 535.00,657.50 410.00,705.00 285.00,657.50" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="410.00" y="651.58" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="bold" fill="#000000">
+    <ns0:tspan x="410.00">Список оказанных</ns0:tspan>
+    <ns0:tspan x="410.00" dy="19.52">услуг пуст?</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="70.00" y="770.00" width="220.00" height="80.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="180.00" y="794.32" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="180.00">Добавить</ns0:tspan>
+    <ns0:tspan x="180.00" dy="19.52">забронированную услугу</ns0:tspan>
+    <ns0:tspan x="180.00" dy="19.52">в visit_services</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="530.00" y="760.00" width="220.00" height="92.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="640.00" y="780.56" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="640.00">Для каждой услуги:</ns0:tspan>
+    <ns0:tspan x="640.00" dy="19.52">проверить право врача,</ns0:tspan>
+    <ns0:tspan x="640.00" dy="19.52">получить цену,</ns0:tspan>
+    <ns0:tspan x="640.00" dy="19.52">добавить строку</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="300.00" y="930.00" width="220.00" height="60.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="410.00" y="954.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="410.00">Создать счет</ns0:tspan>
+    <ns0:tspan x="410.00" dy="19.52">в invoices</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="300.00" y="1030.00" width="220.00" height="60.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="410.00" y="1054.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="410.00">Скопировать строки</ns0:tspan>
+    <ns0:tspan x="410.00" dy="19.52">в invoice_items</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="300.00" y="1130.00" width="220.00" height="60.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="410.00" y="1154.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="410.00">Обновить запись:</ns0:tspan>
+    <ns0:tspan x="410.00" dy="19.52">status = completed</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="300.00" y="1230.00" width="220.00" height="60.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="410.00" y="1254.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="410.00">Вызвать</ns0:tspan>
+    <ns0:tspan x="410.00" dy="19.52">refresh_invoice_state</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="280.00" y="1330.00" width="260.00" height="62.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" rx="22" ry="22" />
+  <ns0:text x="410.00" y="1355.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="410.00">Вернуть идентификатор</ns0:tspan>
+    <ns0:tspan x="410.00" dy="19.52">визита (UUID)</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="620.00" y="375.00" width="140.00" height="60.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" rx="22" ry="22" />
+  <ns0:text x="690.00" y="399.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="690.00">Завершить</ns0:tspan>
+    <ns0:tspan x="690.00" dy="19.52">с ошибкой</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="542.50" y="278.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="542.50">нет</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="542.50" y="408.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="542.50">нет</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="432.50" y="351.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="432.50">да</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="432.50" y="481.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="432.50">да</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="217.50" y="743.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="217.50">да</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="612.50" y="738.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="612.50">нет</ns0:tspan>
+  </ns0:text>
+</ns0:svg>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="430" height="430" viewBox="0 0 430 430">
+  <ns0:defs>
+    <ns0:marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse">
+      <ns0:path d="M 0 0 L 12 6 L 0 12 z" fill="#000000" />
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:polyline points="215.00,77.00 215.00,125.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="215.00,199.00 215.00,240.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="215.00,314.00 215.00,350.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:rect x="155.00" y="25.00" width="120.00" height="52.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" rx="22" ry="22" />
+  <ns0:text x="215.00" y="54.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="215.00">Начало</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="100.00" y="125.00" width="230.00" height="74.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="215.00" y="156.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="215.00">Добавить оплату</ns0:tspan>
+    <ns0:tspan x="215.00" dy="19.52">в payments</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="110.00" y="240.00" width="210.00" height="74.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="215.00" y="271.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="215.00">Вызвать</ns0:tspan>
+    <ns0:tspan x="215.00" dy="19.52">refresh_invoice_state</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="90.00" y="350.00" width="250.00" height="64.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" rx="22" ry="22" />
+  <ns0:text x="215.00" y="376.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="215.00">Вернуть идентификатор</ns0:tspan>
+    <ns0:tspan x="215.00" dy="19.52">оплаты (UUID)</ns0:tspan>
+  </ns0:text>
+</ns0:svg>

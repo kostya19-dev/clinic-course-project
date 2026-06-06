@@ -1,0 +1,45 @@
+digraph G {
+  graph [rankdir=TB, splines=ortho, nodesep=0.45, ranksep=0.55, fontname="Times New Roman"];
+  node [shape=box, style="rounded", fontname="Times New Roman", fontsize=12, margin="0.12,0.08"];
+  edge [fontname="Times New Roman", fontsize=11];
+
+  s [label="Начало"];
+  b1 [label="Найти запись приема
+врача с FOR UPDATE"];
+  b2 [shape=diamond, label="Запись найдена?"];
+  b3 [shape=diamond, label="Статус = booked?"];
+  b4 [label="Создать запись
+в visits"];
+  b5 [shape=diamond, label="Список оказанных
+услуг пуст?"];
+  b6 [label="Добавить
+забронированную услугу
+в visit_services"];
+  b7 [label="Для каждой услуги:
+проверить право врача,
+получить цену,
+добавить строку"];
+  b8 [label="Создать счет
+в invoices"];
+  b9 [label="Скопировать строки
+в invoice_items"];
+  b10 [label="Обновить запись:
+status = completed"];
+  b11 [label="Вызвать
+refresh_invoice_state"];
+  b12 [label="Вернуть идентификатор
+визита (UUID)"];
+  err [label="Завершить с ошибкой"];
+
+  s -> b1 -> b2;
+  b2 -> err [label="нет"];
+  b2 -> b3 [label="да"];
+  b3 -> err [label="нет"];
+  b3 -> b4 [label="да"];
+  b4 -> b5;
+  b5 -> b6 [label="да"];
+  b5 -> b7 [label="нет"];
+  b6 -> b8;
+  b7 -> b8;
+  b8 -> b9 -> b10 -> b11 -> b12;
+}

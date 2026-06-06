@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#111111"/>
+    </marker>
+    <style>
+      .title { font-family: "Liberation Sans", Arial, sans-serif; font-size: 24px; font-weight: 700; fill: #111111; }
+      .label { font-family: "Liberation Sans", Arial, sans-serif; font-size: 16px; fill: #111111; }
+      .small { font-family: "Liberation Sans", Arial, sans-serif; font-size: 14px; fill: #111111; }
+      .box { fill: #eef1fb; stroke: #475569; stroke-width: 1.2; rx: 4; }
+      .section { fill: #ffffff; stroke: #111111; stroke-width: 2; }
+      .section-title { fill: #ffffff; stroke: #111111; stroke-width: 2; }
+      .line { stroke: #111111; stroke-width: 1.4; marker-end: url(#arrow); fill: none; }
+      .return { stroke: #111111; stroke-width: 1.2; stroke-dasharray: 5 4; marker-end: url(#arrow); fill: none; }
+      .life { stroke: #7a7a7a; stroke-width: 1; stroke-dasharray: 7 6; }
+      .active { fill: #ffffff; stroke: #111111; stroke-width: 1.2; }
+      .note { fill: #fffde7; stroke: #8a7a24; stroke-width: 1; }
+      .note-fold { fill: #ffffff; stroke: #8a7a24; stroke-width: 1; }
+      .db { fill: #eef1fb; stroke: #475569; stroke-width: 1.2; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="900" fill="#ffffff"/>
+  <text class="title" x="640" y="34" text-anchor="middle">Диаграмма взаимодействия PostgreSQL и Redis при доступе к данным</text>
+
+  <g transform="translate(54 62)">
+    <circle cx="0" cy="13" r="12" fill="#eef1fb" stroke="#475569"/>
+    <line x1="0" y1="25" x2="0" y2="62" stroke="#111111" stroke-width="1.2"/>
+    <line x1="-24" y1="39" x2="24" y2="39" stroke="#111111" stroke-width="1.2"/>
+    <line x1="0" y1="62" x2="-22" y2="96" stroke="#111111" stroke-width="1.2"/>
+    <line x1="0" y1="62" x2="22" y2="96" stroke="#111111" stroke-width="1.2"/>
+    <text class="label" x="0" y="123" text-anchor="middle">Клиент</text>
+  </g>
+
+  <rect class="box" x="253" y="77" width="150" height="48"/>
+  <text class="label" x="328" y="106" text-anchor="middle">Backend API</text>
+
+  <rect class="box" x="737" y="77" width="158" height="58"/>
+  <text class="label" x="816" y="102" text-anchor="middle">Redis</text>
+  <text class="small" x="816" y="122" text-anchor="middle">InMemory СУБД</text>
+
+  <ellipse class="db" cx="1086" cy="83" rx="30" ry="13"/>
+  <path class="db" d="M1056 83 v52 c0 7 13 13 30 13 s30 -6 30 -13 V83"/>
+  <ellipse class="db" cx="1086" cy="135" rx="30" ry="13"/>
+  <text class="label" x="1140" y="118" text-anchor="middle">PostgreSQL</text>
+  <text class="small" x="1140" y="138" text-anchor="middle">РСУБД</text>
+
+  <line class="life" x1="54" y1="151" x2="54" y2="866"/>
+  <line class="life" x1="328" y1="126" x2="328" y2="866"/>
+  <line class="life" x1="816" y1="136" x2="816" y2="866"/>
+  <line class="life" x1="1086" y1="149" x2="1086" y2="866"/>
+
+  <line x1="0" y1="156" x2="1280" y2="156" stroke="#111111" stroke-width="2"/>
+  <rect class="section-title" x="244" y="139" width="520" height="34"/>
+  <text class="label" x="504" y="162" text-anchor="middle" font-weight="700">Запрос расписания, когда данные в кэше отсутствуют</text>
+
+  <rect class="active" x="320" y="203" width="16" height="285"/>
+  <rect class="active" x="808" y="250" width="16" height="42"/>
+  <rect class="active" x="1078" y="337" width="16" height="57"/>
+  <rect class="active" x="808" y="424" width="16" height="42"/>
+
+  <line class="line" x1="54" y1="215" x2="318" y2="215"/>
+  <text class="small" x="72" y="205">GET /api/v1/doctors/{doctorId}/schedule?from&amp;to</text>
+
+  <line class="line" x1="336" y1="260" x2="806" y2="260"/>
+  <text class="small" x="494" y="250">GET clinic:schedule:doctor:{doctorId}:{from}:{to}</text>
+
+  <line class="return" x1="808" y1="290" x2="338" y2="290"/>
+  <text class="small" x="586" y="282">NULL</text>
+
+  <path class="note" d="M350 310 h120 l20 20 v50 h-140 z"/>
+  <path class="note-fold" d="M470 310 v20 h20"/>
+  <text class="small" x="420" y="341" text-anchor="middle">Кэш не найден</text>
+  <text class="small" x="420" y="360" text-anchor="middle">чтение из PostgreSQL</text>
+
+  <line class="line" x1="336" y1="350" x2="1076" y2="350"/>
+  <text class="small" x="540" y="333">SELECT doctor_availability, appointments WHERE doctor_id = {doctorId}</text>
+
+  <line class="return" x1="1078" y1="394" x2="338" y2="394"/>
+  <text class="small" x="604" y="386">ScheduleView JSON</text>
+
+  <line class="line" x1="336" y1="437" x2="806" y2="437"/>
+  <text class="small" x="474" y="429">SET clinic:schedule:doctor:{...} JSON EX ttl</text>
+
+  <line class="return" x1="808" y1="466" x2="338" y2="466"/>
+  <text class="small" x="584" y="458">OK</text>
+
+  <line class="return" x1="320" y1="488" x2="56" y2="488"/>
+  <text class="small" x="100" y="478">200 OK: данные из PostgreSQL</text>
+
+  <line x1="0" y1="535" x2="1280" y2="535" stroke="#111111" stroke-width="2"/>
+  <rect class="section-title" x="308" y="518" width="420" height="34"/>
+  <text class="label" x="518" y="541" text-anchor="middle" font-weight="700">Запрос прайс-листа, когда данные в кэше есть</text>
+
+  <rect class="active" x="320" y="583" width="16" height="125"/>
+  <rect class="active" x="808" y="623" width="16" height="55"/>
+
+  <line class="line" x1="54" y1="595" x2="318" y2="595"/>
+  <text class="small" x="74" y="585">GET /api/v1/services/pricelist</text>
+
+  <line class="line" x1="336" y1="635" x2="806" y2="635"/>
+  <text class="small" x="518" y="625">GET clinic:catalog:pricelist</text>
+
+  <line class="return" x1="808" y1="677" x2="338" y2="677"/>
+  <text class="small" x="528" y="669">PriceList JSON</text>
+
+  <path class="note" d="M352 654 h96 l20 20 v44 h-116 z"/>
+  <path class="note-fold" d="M448 654 v20 h20"/>
+  <text class="small" x="410" y="684" text-anchor="middle">Кэш найден</text>
+
+  <line class="return" x1="320" y1="708" x2="56" y2="708"/>
+  <text class="small" x="94" y="698">200 OK: данные из Redis</text>
+
+  <line x1="0" y1="760" x2="1280" y2="760" stroke="#111111" stroke-width="2"/>
+  <rect class="section-title" x="300" y="743" width="530" height="34"/>
+  <text class="label" x="565" y="766" text-anchor="middle" font-weight="700">Инвалидация кэша расписания после изменения записи</text>
+
+  <rect class="active" x="320" y="807" width="16" height="55"/>
+  <rect class="active" x="808" y="840" width="16" height="35"/>
+  <rect class="active" x="1078" y="810" width="16" height="36"/>
+
+  <line class="line" x1="54" y1="818" x2="318" y2="818"/>
+  <text class="small" x="76" y="808">POST /appointments, /cancel или /complete</text>
+
+  <line class="line" x1="336" y1="825" x2="1076" y2="825"/>
+  <text class="small" x="560" y="815">вызов функции PostgreSQL: book/cancel/complete</text>
+
+  <line class="return" x1="1078" y1="846" x2="338" y2="846"/>
+  <text class="small" x="690" y="839">OK</text>
+
+  <line class="line" x1="336" y1="862" x2="806" y2="862"/>
+  <text class="small" x="505" y="854">DEL clinic:schedule:doctor:{doctorId}:*</text>
+</svg>

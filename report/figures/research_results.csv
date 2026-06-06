@@ -1,0 +1,4 @@
+rows,schedule_indexed,schedule_without_index_scan,patient_history,patient_invoices,revenue_report,book_appointment
+5000,1.717,1.745,0.176,0.129,4.828,0.559
+20000,3.387,6.292,0.194,0.403,19.865,0.253
+50000,7.614,23.188,0.143,1.325,57.672,0.276

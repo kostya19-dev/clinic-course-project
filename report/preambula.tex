@@ -1,0 +1,421 @@
+\RequirePackage{iftex}
+\PassOptionsToPackage{table}{xcolor}
+\documentclass{bmstu}
+
+\ifPDFTeX
+    \input{glyphtounicode.tex}
+    \pdfgentounicode=1
+\else
+    \usepackage{fontspec}
+    \defaultfontfeatures{Ligatures=TeX}
+    \setmainfont{Times New Roman}[
+        Path=/mnt/c/Windows/Fonts/,
+        Extension=.ttf,
+        UprightFont=times,
+        BoldFont=timesbd,
+        ItalicFont=timesi,
+        BoldItalicFont=timesbi
+    ]
+    \setsansfont{Arial}[
+        Path=/mnt/c/Windows/Fonts/,
+        Extension=.ttf,
+        UprightFont=arial,
+        BoldFont=arialbd,
+        ItalicFont=ariali,
+        BoldItalicFont=arialbi
+    ]
+    \setmonofont{Courier New}[
+        Path=/mnt/c/Windows/Fonts/,
+        Extension=.ttf,
+        UprightFont=cour,
+        BoldFont=courbd,
+        ItalicFont=couri,
+        BoldItalicFont=courbi
+    ]
+\fi
+
+\usepackage{adjustbox}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{blindtext}
+\usepackage{caption}
+\usepackage{chngcntr}
+\usepackage{csvsimple}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hhline}
+\usepackage{indentfirst}
+\usepackage{lastpage}
+\usepackage{listings}
+\lstdefinelanguage{Go}{
+    morekeywords={break,default,func,interface,select,case,defer,go,map,struct,chan,else,goto,package,switch,const,fallthrough,if,range,type,continue,for,import,return,var,nil,true,false},
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+}
+\usepackage{microtype}
+\usepackage{multirow}
+\usepackage{pdfpages}
+\usepackage{ragged2e}
+\usepackage{rotating}
+\usepackage{setspace}
+\usepackage{siunitx}
+\usepackage{tabularx}
+\usepackage{tcolorbox}
+\usepackage{titletoc}
+\usepackage{totcount}
+\usepackage{refcount}
+\usepackage{titlesec}
+\usepackage{ulem}
+\usepackage{url}
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes, arrows.meta, fit, calc}
+\usepackage{xparse}
+
+\addto\captionsrussian{
+    \renewcommand{\contentsname}{СОДЕРЖАНИЕ}
+    \renewcommand{\bibname}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+}
+
+\addto\captionsrussian{
+    \renewcommand{\contentsname}{СОДЕРЖАНИЕ}
+    \renewcommand{\bibname}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+}
+
+% Словоформы для количественных числительных
+\makeatletter
+\newcommand{\ruquantity}[4]{%
+    \number\numexpr#1\relax~\ruquantityword{#1}{#2}{#3}{#4}%
+}
+\newcommand{\ruquantityword}[4]{%
+    \begingroup
+    \count255=\numexpr#1\relax
+    \count254=\count255
+    \divide\count254 by 100
+    \multiply\count254 by 100
+    \advance\count255 by -\count254
+    \ifnum\count255>10
+        \ifnum\count255<20
+            #4%
+        \else
+            \count255=\numexpr#1\relax
+            \count254=\count255
+            \divide\count254 by 10
+            \multiply\count254 by 10
+            \advance\count255 by -\count254
+            \ifnum\count255=1 #2% 
+            \else
+                \ifnum\count255>1
+                    \ifnum\count255<5 #3% 
+                    \else #4% 
+                    \fi
+                \else #4% 
+                \fi
+            \fi
+        \fi
+    \else
+        \count255=\numexpr#1\relax
+        \count254=\count255
+        \divide\count254 by 10
+        \multiply\count254 by 10
+        \advance\count255 by -\count254
+        \ifnum\count255=1 #2% 
+        \else
+            \ifnum\count255>1
+                \ifnum\count255<5 #3% 
+                \else #4% 
+                \fi
+            \else #4% 
+            \fi
+        \fi
+    \fi
+    \endgroup
+}
+\makeatother
+
+% Форматирование секций
+\titleformat{name=\chapter,numberless}[block]{\normalfont\large\bfseries\centering}{}{0pt}{}
+\titleformat{\chapter}[block]{\normalfont\large\bfseries}{\thechapter}{1em}{}
+\titlespacing\chapter{\parindent}{*2}{*2}
+
+\titleformat{name=\section,numberless}[block]{\normalfont\large\bfseries\centering}{}{0pt}{}
+\titleformat{\section}[block]{\normalfont\large\bfseries}{\thesection}{1em}{}
+\titlespacing\section{\parindent}{*3}{*2}
+
+\titleformat{\subsection}[hang]{\bfseries\large}{\thesubsection}{1em}{}
+\titlespacing\subsection{\parindent}{*2}{*2}
+
+\titleformat{\subsubsection}[hang]{\bfseries\large}{\thesubsubsection}{1em}{}
+\titlespacing\subsubsection{\parindent}{*2}{*2}
+
+% Отточие в оглавлении
+\titlecontents{chapter}[0pt]
+  {\addvspace{1em}\bfseries}
+  {\contentslabel{2.3em}}
+  {}
+  {\normalfont\hspace{0.5em}\titlerule*[1pc]{.}\contentspage}
+  []
+
+\titlecontents{section}[1.5em]
+  {\addvspace{0.5em}}
+  {\contentslabel{2.5em}}
+  {}
+  {\normalfont\hspace{0.5em}\titlerule*[1pc]{.}\contentspage}
+  []
+
+\titlecontents{subsection}[4em]
+  {}
+  {\contentslabel{3em}}
+  {}
+  {\normalfont\hspace{0.5em}\titlerule*[1pc]{.}\contentspage}
+  []
+
+% Общее форматирование
+\onehalfspacing
+\frenchspacing
+\setlength\parindent{1.25cm}
+\hypersetup{hidelinks,unicode=true}
+\microtypesetup{expansion=false}
+
+% Настройка списков
+\setlist{
+    labelsep=0.3cm,
+    itemsep=0pt,
+    parsep=0pt,
+    topsep=0pt,
+    itemindent=0pt
+}
+
+\setlist[enumerate]{
+    label=\arabic*),
+    leftmargin=2cm,
+}
+\setlist[enumerate,2]{
+    label=\arabic*),
+    leftmargin=*,
+}
+
+\setlist[itemize]{
+    label=---,
+    leftmargin=2cm,
+    labelsep=0.3cm
+}
+\setlist[itemize,2]{
+    label=---,
+    leftmargin=*,
+    labelsep=0.3cm
+}
+
+% Настройки листингов
+\lstset{
+    backgroundcolor=\color{white},
+    basicstyle=\footnotesize\ttfamily\linespread{0.8},
+    breakatwhitespace=true,
+    breaklines=true,
+    abovecaptionskip=8pt,
+    belowcaptionskip=10pt,
+    captionpos=b,
+    commentstyle=\color{green!50!black},
+    escapeinside={\#*}{*)},
+    frame=single,
+    inputencoding=utf8,
+    keywordstyle=\color{blue},
+    language=C,
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\tiny,
+    showstringspaces=false,
+    stringstyle=\color{red!90!black},
+    tabsize=4,
+}
+\lstset{morekeywords={size_t, likely}}
+\lstset{
+    literate=
+    {а}{{\selectfont\char224}}1
+    {б}{{\selectfont\char225}}1
+    {в}{{\selectfont\char226}}1
+    {г}{{\selectfont\char227}}1
+    {д}{{\selectfont\char228}}1
+    {е}{{\selectfont\char229}}1
+    {ё}{{\"e}}1
+    {ж}{{\selectfont\char230}}1
+    {з}{{\selectfont\char231}}1
+    {и}{{\selectfont\char232}}1
+    {й}{{\selectfont\char233}}1
+    {к}{{\selectfont\char234}}1
+    {л}{{\selectfont\char235}}1
+    {м}{{\selectfont\char236}}1
+    {н}{{\selectfont\char237}}1
+    {о}{{\selectfont\char238}}1
+    {п}{{\selectfont\char239}}1
+    {р}{{\selectfont\char240}}1
+    {с}{{\selectfont\char241}}1
+    {т}{{\selectfont\char242}}1
+    {у}{{\selectfont\char243}}1
+    {ф}{{\selectfont\char244}}1
+    {х}{{\selectfont\char245}}1
+    {ц}{{\selectfont\char246}}1
+    {ч}{{\selectfont\char247}}1
+    {ш}{{\selectfont\char248}}1
+    {щ}{{\selectfont\char249}}1
+    {ъ}{{\selectfont\char250}}1
+    {ы}{{\selectfont\char251}}1
+    {ь}{{\selectfont\char252}}1
+    {э}{{\selectfont\char253}}1
+    {ю}{{\selectfont\char254}}1
+    {я}{{\selectfont\char255}}1
+    {А}{{\selectfont\char192}}1
+    {Б}{{\selectfont\char193}}1
+    {В}{{\selectfont\char194}}1
+    {Г}{{\selectfont\char195}}1
+    {Д}{{\selectfont\char196}}1
+    {Е}{{\selectfont\char197}}1
+    {Ё}{{\"E}}1
+    {Ж}{{\selectfont\char198}}1
+    {З}{{\selectfont\char199}}1
+    {И}{{\selectfont\char200}}1
+    {Й}{{\selectfont\char201}}1
+    {К}{{\selectfont\char202}}1
+    {Л}{{\selectfont\char203}}1
+    {М}{{\selectfont\char204}}1
+    {Н}{{\selectfont\char205}}1
+    {О}{{\selectfont\char206}}1
+    {П}{{\selectfont\char207}}1
+    {Р}{{\selectfont\char208}}1
+    {С}{{\selectfont\char209}}1
+    {Т}{{\selectfont\char210}}1
+    {У}{{\selectfont\char211}}1
+    {Ф}{{\selectfont\char212}}1
+    {Х}{{\selectfont\char213}}1
+    {Ц}{{\selectfont\char214}}1
+    {Ч}{{\selectfont\char215}}1
+    {Ш}{{\selectfont\char216}}1
+    {Щ}{{\selectfont\char217}}1
+    {Ъ}{{\selectfont\char218}}1
+    {Ы}{{\selectfont\char219}}1
+    {Ь}{{\selectfont\char220}}1
+    {Э}{{\selectfont\char221}}1
+    {Ю}{{\selectfont\char222}}1
+    {Я}{{\selectfont\char223}}1
+}
+
+% Настройка подписей
+\captionsetup[figure]{
+    name={Рисунок},
+    justification=centering,
+    labelsep=endash,
+    singlelinecheck=on
+}
+\captionsetup[table]{
+    name={Таблица},
+    justification=raggedright,
+    labelsep=endash,
+    singlelinecheck=off
+}
+\captionsetup[lstlisting]{
+    justification=raggedright,
+    labelsep=endash,
+    singlelinecheck=false,
+    skip=8pt
+}
+
+% Метки в библиографии
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
+% Подчёркнутый текст
+\NewDocumentCommand{\ulinetext}{O{3cm} O{c} m m}
+{\underset{\mbox{\scriptsize #3}}{\uline{\makebox[#1][#2]{#4}}}}
+
+% Секция без номера, но с записью в оглавлении
+\newcommand{\numberlesssection}[1]{\phantomsection\section*{#1}\addcontentsline{toc}{section}{#1}}
+
+% Подсекция без номера, но с записью в оглавлении
+\newcommand{\numberlesssubsection}[1]{\phantomsection\subsection*{#1}\addcontentsline{toc}{subsection}{#1}}
+
+% Центрирование в таблице, растянутой по ширине страницы
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% Приложения
+\newcounter{appsection}
+\regtotcounter{appsection}
+\newcommand{\russianappendixletter}[1]{%
+    \ifcase#1\or А\or Б\or В\or Г\or Д\or Е\or Ж\or З\or И\or К\or Л\or М\or Н\or О\or П\or Р\or С\or Т\or У\or Ф\or Х\or Ц\or Ч\or Ш\or Щ\or Э\or Ю\or Я\else ?\fi%
+}
+\renewcommand{\theappsection}{\russianappendixletter{\value{appsection}}}
+
+\newcommand{\appsection}{
+    \newpage
+    \refstepcounter{appsection}
+    \phantomsection
+    \addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЕ~\theappsection}
+    \begin{center}
+        \textbf{ПРИЛОЖЕНИЕ~\theappsection}
+    \end{center}
+
+    \renewcommand{\thefigure}{\theappsection.\arabic{figure}}
+    \renewcommand{\thetable}{\theappsection.\arabic{table}}
+    \renewcommand{\thelstlisting}{\theappsection.\arabic{lstlisting}}
+    \renewcommand{\theequation}{\theappsection.\arabic{equation}}
+
+    \setcounter{figure}{0}
+    \setcounter{table}{0}
+    \setcounter{lstlisting}{0}
+    \setcounter{equation}{0}
+}
+
+% Листинги с автопереносом
+\tcbuselibrary{listings, breakable, skins}
+\newtcblisting[use counter=lstlisting]{listing}[3][]{
+    boxrule=0.5pt,
+    breakable,
+    colback=white,
+    colbacktitle=white,
+    colframe=black,
+    fonttitle=\color{black},
+    listing only,
+    listing options={language=#3,frame=none,xleftmargin=0pt,title={#1}},
+    sharp corners,
+    title={Листинг~\thelstlisting~--~#1},
+    title after break={Листинг~\thelstlisting\ (продолжение)},
+    label={#2},
+}
+
+\newtcbinputlisting[use counter=lstlisting]{\flisting}[4][]{
+    boxrule=0.5pt,
+    breakable,
+    colback=white,
+    colbacktitle=white,
+    colframe=black,
+    fonttitle=\color{black},
+    listing only,
+    listing file={#3},
+    listing options={language=#4,frame=none,xleftmargin=10pt},
+    sharp corners,
+    title={Листинг~\thelstlisting~--~#1},
+    title after break={Листинг~\thelstlisting\ (продолжение)},
+    label={#2}
+}
+
+% Подсчет общего количества рисунков, таблиц и источников
+\newcounter{figures}
+\regtotcounter{figures}
+\AtBeginEnvironment{figure}{\stepcounter{figures}}
+
+\newcounter{tables}
+\regtotcounter{tables}
+\AtBeginEnvironment{table}{\stepcounter{tables}}
+
+\newcounter{references}
+\regtotcounter{references}
+\makeatletter
+\pretocmd{\bibitem}{\stepcounter{references}}{}{}
+\makeatother
+
+\graphicspath{{figures/}{img/}}

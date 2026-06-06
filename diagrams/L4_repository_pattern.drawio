@@ -1,0 +1,331 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram name="L4 Repository" id="l4repo">
+    <mxGraphModel dx="1226" dy="776" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="2339" pageHeight="3300" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=15;fontColor=#1060a0;" value="&lt;b&gt;Компонент 1 — Доступ к данным (Repository pattern)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="750" x="30" y="14" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#666666;" value="Три ряда: интерфейсы репозиториев → реализации (PostgreSQL) → DB-сущности (таблицы). Сервисный слой зависит только от интерфейсов — принцип инверсии зависимостей (DIP)." vertex="1">
+          <mxGeometry height="18" width="1200" x="30" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="i1" parent="1" style="swimlane;html=1;align=center;startSize=44;arcSize=0;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" value="&lt;&lt;interface&gt;&gt;&lt;br&gt;&lt;b&gt;IPatientRepository&lt;/b&gt;" vertex="1">
+          <mxGeometry height="176" width="270" x="30" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="i1m1" connectable="0" parent="i1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetAll() : []PatientEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="i1m2" connectable="0" parent="i1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByID(id int) : PatientEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="i1m3" connectable="0" parent="i1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByEmail(email string) : PatientEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="i1m4" connectable="0" parent="i1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(p PatientEntity) : error" vertex="1">
+          <mxGeometry height="22" width="270" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="i1m5" connectable="0" parent="i1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Update(p PatientEntity) : error" vertex="1">
+          <mxGeometry height="22" width="270" y="132" as="geometry" />
+        </mxCell>
+        <mxCell id="i1m6" connectable="0" parent="i1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Delete(id int) : error" vertex="1">
+          <mxGeometry height="22" width="270" y="154" as="geometry" />
+        </mxCell>
+        <mxCell id="i2" parent="1" style="swimlane;html=1;align=center;startSize=44;arcSize=0;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" value="&lt;&lt;interface&gt;&gt;&lt;br&gt;&lt;b&gt;IAppointmentRepository&lt;/b&gt;" vertex="1">
+          <mxGeometry height="220" width="290" x="330" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="i2m1" connectable="0" parent="i2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetAll() : []AppointmentEntity, error" vertex="1">
+          <mxGeometry height="22" width="290" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="i2m2" connectable="0" parent="i2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByID(id int) : AppointmentEntity, error" vertex="1">
+          <mxGeometry height="22" width="290" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="i2m3" connectable="0" parent="i2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByPatientID(patientID int) : []AppointmentEntity, error" vertex="1">
+          <mxGeometry height="22" width="290" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="i2m4" connectable="0" parent="i2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByDoctorAndDate(doctorID int, date time.Time)" vertex="1">
+          <mxGeometry height="22" width="290" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="i2m5" connectable="0" parent="i2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetFreeSlots(doctorID int, date time.Time)" vertex="1">
+          <mxGeometry height="22" width="290" y="132" as="geometry" />
+        </mxCell>
+        <mxCell id="i2m6" connectable="0" parent="i2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(a AppointmentEntity) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="154" as="geometry" />
+        </mxCell>
+        <mxCell id="i2m7" connectable="0" parent="i2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+UpdateStatus(id int, status string) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="176" as="geometry" />
+        </mxCell>
+        <mxCell id="i2m8" connectable="0" parent="i2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Delete(id int) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="i3" parent="1" style="swimlane;html=1;align=center;startSize=44;arcSize=0;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" value="&lt;&lt;interface&gt;&gt;&lt;br&gt;&lt;b&gt;IScheduleRepository&lt;/b&gt;" vertex="1">
+          <mxGeometry height="154" width="290" x="650" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="i3m1" connectable="0" parent="i3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByDoctorID(doctorID int) : []ScheduleEntity, error" vertex="1">
+          <mxGeometry height="22" width="290" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="i3m2" connectable="0" parent="i3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetFreeSlots(doctorID int, date time.Time) : []ScheduleEntity, error" vertex="1">
+          <mxGeometry height="22" width="290" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="i3m3" connectable="0" parent="i3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(s ScheduleEntity) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="i3m4" connectable="0" parent="i3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Update(s ScheduleEntity) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="i3m5" connectable="0" parent="i3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Delete(id int) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="132" as="geometry" />
+        </mxCell>
+        <mxCell id="i4" parent="1" style="swimlane;html=1;align=center;startSize=44;arcSize=0;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" value="&lt;&lt;interface&gt;&gt;&lt;br&gt;&lt;b&gt;IVisitRepository&lt;/b&gt;" vertex="1">
+          <mxGeometry height="154" width="270" x="970" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="i4m1" connectable="0" parent="i4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByID(id int) : VisitEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="i4m2" connectable="0" parent="i4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByAppointmentID(appID int) : VisitEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="i4m3" connectable="0" parent="i4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByPatientID(patientID int) : []VisitEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="i4m4" connectable="0" parent="i4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(v VisitEntity) : error" vertex="1">
+          <mxGeometry height="22" width="270" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="i4m5" connectable="0" parent="i4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Update(v VisitEntity) : error" vertex="1">
+          <mxGeometry height="22" width="270" y="132" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="PostgresPatientRepository" vertex="1">
+          <mxGeometry height="200" width="270" x="30" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="r1f0" connectable="0" parent="r1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;fontStyle=2;" value="-db *sql.DB" vertex="1">
+          <mxGeometry height="22" width="270" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r1div" connectable="0" parent="r1" style="line;html=1;strokeWidth=1;fillColor=none;rotatable=0;" value="" vertex="1">
+          <mxGeometry height="8" width="270" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="r1m1" connectable="0" parent="r1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetAll() : []PatientEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r1m2" connectable="0" parent="r1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByID(id int) : PatientEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="r1m3" connectable="0" parent="r1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByEmail(email string) : PatientEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="r1m4" connectable="0" parent="r1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(p PatientEntity) : error" vertex="1">
+          <mxGeometry height="22" width="270" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="r1m5" connectable="0" parent="r1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Update(p PatientEntity) : error" vertex="1">
+          <mxGeometry height="22" width="270" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="r1m6" connectable="0" parent="r1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Delete(id int) : error" vertex="1">
+          <mxGeometry height="22" width="270" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="PostgresAppointmentRepository" vertex="1">
+          <mxGeometry height="244" width="290" x="330" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="r2f0" connectable="0" parent="r2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;fontStyle=2;" value="-db *sql.DB" vertex="1">
+          <mxGeometry height="22" width="290" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r2div" connectable="0" parent="r2" style="line;html=1;strokeWidth=1;fillColor=none;rotatable=0;" value="" vertex="1">
+          <mxGeometry height="8" width="290" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="r2m1" connectable="0" parent="r2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetAll() : []AppointmentEntity, error" vertex="1">
+          <mxGeometry height="22" width="290" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r2m2" connectable="0" parent="r2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByID(id int) : AppointmentEntity, error" vertex="1">
+          <mxGeometry height="22" width="290" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="r2m3" connectable="0" parent="r2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByPatientID(patientID int) : []AppointmentEntity, error" vertex="1">
+          <mxGeometry height="22" width="290" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="r2m4" connectable="0" parent="r2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByDoctorAndDate(doctorID int, date time.Time)" vertex="1">
+          <mxGeometry height="22" width="290" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="r2m5" connectable="0" parent="r2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetFreeSlots(doctorID int, date time.Time)" vertex="1">
+          <mxGeometry height="22" width="290" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="r2m6" connectable="0" parent="r2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(a AppointmentEntity) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="r2m7" connectable="0" parent="r2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+UpdateStatus(id int, status string) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="192" as="geometry" />
+        </mxCell>
+        <mxCell id="r2m8" connectable="0" parent="r2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Delete(id int) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="214" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="PostgresScheduleRepository" vertex="1">
+          <mxGeometry height="170" width="290" x="650" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="r3f0" connectable="0" parent="r3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;fontStyle=2;" value="-db *sql.DB" vertex="1">
+          <mxGeometry height="22" width="290" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r3div" connectable="0" parent="r3" style="line;html=1;strokeWidth=1;fillColor=none;rotatable=0;" value="" vertex="1">
+          <mxGeometry height="8" width="290" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="r3m1" connectable="0" parent="r3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByDoctorID(doctorID int) : []ScheduleEntity, error" vertex="1">
+          <mxGeometry height="22" width="290" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r3m2" connectable="0" parent="r3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetFreeSlots(doctorID int, date time.Time)" vertex="1">
+          <mxGeometry height="22" width="290" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="r3m3" connectable="0" parent="r3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(s ScheduleEntity) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="r3m4" connectable="0" parent="r3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Update(s ScheduleEntity) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="r3m5" connectable="0" parent="r3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Delete(id int) : error" vertex="1">
+          <mxGeometry height="22" width="290" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="PostgresVisitRepository" vertex="1">
+          <mxGeometry height="170" width="270" x="970" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="r4f0" connectable="0" parent="r4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;fontStyle=2;" value="-db *sql.DB" vertex="1">
+          <mxGeometry height="22" width="270" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r4div" connectable="0" parent="r4" style="line;html=1;strokeWidth=1;fillColor=none;rotatable=0;" value="" vertex="1">
+          <mxGeometry height="8" width="270" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="r4m1" connectable="0" parent="r4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByID(id int) : VisitEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r4m2" connectable="0" parent="r4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByAppointmentID(appID int) : VisitEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="r4m3" connectable="0" parent="r4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByPatientID(patientID int) : []VisitEntity, error" vertex="1">
+          <mxGeometry height="22" width="270" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="r4m4" connectable="0" parent="r4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(v VisitEntity) : error" vertex="1">
+          <mxGeometry height="22" width="270" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="r4m5" connectable="0" parent="r4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Update(v VisitEntity) : error" vertex="1">
+          <mxGeometry height="22" width="270" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="PatientEntity" vertex="1">
+          <mxGeometry height="162" width="270" x="30" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="e1f1" connectable="0" parent="e1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ID" vertex="1">
+          <mxGeometry height="22" width="270" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e1f2" connectable="0" parent="e1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string FullName" vertex="1">
+          <mxGeometry height="22" width="270" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="e1f3" connectable="0" parent="e1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time BirthDate" vertex="1">
+          <mxGeometry height="22" width="270" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="e1f4" connectable="0" parent="e1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Phone" vertex="1">
+          <mxGeometry height="22" width="270" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="e1f5" connectable="0" parent="e1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Email" vertex="1">
+          <mxGeometry height="22" width="270" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="e1f6" connectable="0" parent="e1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time CreatedAt" vertex="1">
+          <mxGeometry height="22" width="270" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="AppointmentEntity" vertex="1">
+          <mxGeometry height="162" width="290" x="330" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="e2f1" connectable="0" parent="e2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ID" vertex="1">
+          <mxGeometry height="22" width="290" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e2f2" connectable="0" parent="e2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int PatientID" vertex="1">
+          <mxGeometry height="22" width="290" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="e2f3" connectable="0" parent="e2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ScheduleSlotID" vertex="1">
+          <mxGeometry height="22" width="290" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="e2f4" connectable="0" parent="e2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time ScheduledAt" vertex="1">
+          <mxGeometry height="22" width="290" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="e2f5" connectable="0" parent="e2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Status" vertex="1">
+          <mxGeometry height="22" width="290" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="e2f6" connectable="0" parent="e2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time CreatedAt" vertex="1">
+          <mxGeometry height="22" width="290" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="ScheduleEntity" vertex="1">
+          <mxGeometry height="184" width="290" x="650" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="e3f1" connectable="0" parent="e3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ID" vertex="1">
+          <mxGeometry height="22" width="290" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e3f2" connectable="0" parent="e3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int DoctorID" vertex="1">
+          <mxGeometry height="22" width="290" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="e3f3" connectable="0" parent="e3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time Date" vertex="1">
+          <mxGeometry height="22" width="290" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="e3f4" connectable="0" parent="e3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time StartTime" vertex="1">
+          <mxGeometry height="22" width="290" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="e3f5" connectable="0" parent="e3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time EndTime" vertex="1">
+          <mxGeometry height="22" width="290" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="e3f6" connectable="0" parent="e3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Cabinet" vertex="1">
+          <mxGeometry height="22" width="290" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e3f7" connectable="0" parent="e3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+bool IsBooked" vertex="1">
+          <mxGeometry height="22" width="290" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="VisitEntity" vertex="1">
+          <mxGeometry height="184" width="270" x="970" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="e4f1" connectable="0" parent="e4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ID" vertex="1">
+          <mxGeometry height="22" width="270" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e4f2" connectable="0" parent="e4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int AppointmentID" vertex="1">
+          <mxGeometry height="22" width="270" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="e4f3" connectable="0" parent="e4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Complaints" vertex="1">
+          <mxGeometry height="22" width="270" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="e4f4" connectable="0" parent="e4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Diagnosis" vertex="1">
+          <mxGeometry height="22" width="270" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="e4f5" connectable="0" parent="e4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Recommendations" vertex="1">
+          <mxGeometry height="22" width="270" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="e4f6" connectable="0" parent="e4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string VisitStatus" vertex="1">
+          <mxGeometry height="22" width="270" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="e4f7" connectable="0" parent="e4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time CreatedAt" vertex="1">
+          <mxGeometry height="22" width="270" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="ar1" edge="1" parent="1" source="r1" style="endArrow=block;endFill=0;dashed=1;dashPattern=8 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="i1" value="реализует">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ar2" edge="1" parent="1" source="r2" style="endArrow=block;endFill=0;dashed=1;dashPattern=8 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="i2" value="реализует">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ar3" edge="1" parent="1" source="r3" style="endArrow=block;endFill=0;dashed=1;dashPattern=8 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="i3" value="реализует">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ar4" edge="1" parent="1" source="r4" style="endArrow=block;endFill=0;dashed=1;dashPattern=8 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="i4" value="реализует">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au1" edge="1" parent="1" source="r1" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="e1" value="использует">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au2" edge="1" parent="1" source="r2" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="e2" value="использует">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au3" edge="1" parent="1" source="r3" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="e3" value="использует">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au4" edge="1" parent="1" source="r4" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="e4" value="использует">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="au5" edge="1" parent="1" source="r2" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;fontSize=11;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="e3" value="использует (GetFreeSlots)">
+          <mxGeometry relative="1" x="-0.1818" y="29" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="640" y="660" />
+              <mxPoint x="640" y="792" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

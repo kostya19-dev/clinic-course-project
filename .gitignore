@@ -1,0 +1,29 @@
+# build/runtime artifacts
+node_modules/
+dist/
+__pycache__/
+*.pyc
+*.log
+*.aux
+*.bcf
+*.listing
+*.out
+*.run.xml
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex*
+*.Zone.Identifier
+*:Zone.Identifier
+
+# local/editor files
+.DS_Store
+.vscode/
+.idea/
+.env
+.env.local
+
+# report build outputs kept out of source tree
+report/main.pdf
+report/main_design.pdf
+*old*

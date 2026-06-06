@@ -1,0 +1,25 @@
+% Основной файл расчетно-пояснительной записки
+\input{preambula}
+\input{metadata}
+
+\begin{document}
+
+\input{title}
+% После титульного листа в печатный экземпляр вшиваются задание и календарный план.
+% Поэтому реферат должен иметь номер страницы 4, а содержание -- 5.
+\setcounter{page}{4}
+\input{sections/abstract}
+
+\tableofcontents
+\clearpage
+
+\input{sections/introduction}
+\input{sections/analysis}
+\input{sections/design}
+\input{sections/technology}
+\input{sections/research}
+\input{sections/conclusion}
+\input{sections/sources}
+\input{sections/appendices}
+
+\end{document}

@@ -1,0 +1,36 @@
+Output format is unaligned.
+Field separator is "|".
+SET
+SET
+SET
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+CREATE FUNCTION
+DO
+CREATE TABLE
+DO
+RESULT|5000|book_appointment|0.560|0.256|0.828
+RESULT|5000|patient_history|0.484|0.423|0.543
+RESULT|5000|patient_invoices|0.950|0.808|1.046
+RESULT|5000|revenue_report|6.152|5.931|6.361
+RESULT|5000|schedule_indexed|2.040|1.895|2.254
+RESULT|5000|schedule_without_index_scan|1.997|1.850|2.246
+RESULT|20000|book_appointment|0.352|0.268|0.511
+RESULT|20000|patient_history|0.169|0.143|0.244
+RESULT|20000|patient_invoices|1.790|1.606|2.328
+RESULT|20000|revenue_report|25.460|23.351|29.514
+RESULT|20000|schedule_indexed|7.135|6.852|7.534
+RESULT|20000|schedule_without_index_scan|7.047|6.825|7.678
+RESULT|50000|book_appointment|0.277|0.239|0.312
+RESULT|50000|patient_history|0.144|0.132|0.187
+RESULT|50000|patient_invoices|2.481|2.146|2.789
+RESULT|50000|revenue_report|57.943|54.387|66.460
+RESULT|50000|schedule_indexed|26.391|25.980|26.977
+RESULT|50000|schedule_without_index_scan|25.878|25.367|26.479
+COUNT|billing.invoice_items|50000
+COUNT|billing.invoices|50000
+COUNT|billing.payments|50000
+COUNT|medical.patients|50002
+COUNT|medical.visits|50000
+COUNT|scheduling.appointments|50008

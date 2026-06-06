@@ -1,0 +1,309 @@
+% Приложения
+\appendix
+
+\clearpage
+\phantomsection
+\chapter*{ПРИЛОЖЕНИЕ А}
+\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЕ А}
+\renewcommand{\thelstlisting}{А.\arabic{lstlisting}}
+\setcounter{lstlisting}{0}
+
+\begin{lstlisting}[language=SQL,caption={Фрагмент реализации сущности записи на прием},label={lst:appendix-appointments}]
+CREATE TABLE IF NOT EXISTS scheduling.appointments (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    patient_id UUID NOT NULL REFERENCES medical.patients(id) ON DELETE RESTRICT,
+    doctor_id UUID NOT NULL REFERENCES medical.doctors(id) ON DELETE RESTRICT,
+    booked_service_id UUID NOT NULL REFERENCES catalog.services(id) ON DELETE RESTRICT,
+    starts_at TIMESTAMPTZ NOT NULL,
+    ends_at TIMESTAMPTZ NOT NULL,
+    status scheduling.appointment_status NOT NULL DEFAULT 'booked',
+    note TEXT,
+    cancellation_reason TEXT,
+    created_by_user_id UUID NOT NULL REFERENCES security.users(id) ON DELETE RESTRICT,
+    cancelled_by_user_id UUID REFERENCES security.users(id) ON DELETE RESTRICT,
+    completed_at TIMESTAMPTZ,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    period TSTZRANGE GENERATED ALWAYS AS (tstzrange(starts_at, ends_at, '[)')) STORED,
+    CHECK (ends_at > starts_at)
+);
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL,caption={Фрагменты реализации ограничений целостности},label={lst:appendix-constraints}]
+CREATE DOMAIN security.email_address AS VARCHAR(150)
+    CHECK (VALUE IS NULL OR VALUE ~* '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$');
+
+CREATE DOMAIN security.phone_number AS VARCHAR(20)
+    CHECK (VALUE IS NULL OR VALUE ~ '^\+?[1-9][0-9]{10,14}$');
+
+ALTER TABLE catalog.service_prices
+    ADD CONSTRAINT service_prices_no_overlap
+    EXCLUDE USING gist (service_id WITH =, period WITH &&);
+
+ALTER TABLE scheduling.doctor_availability
+    ADD CONSTRAINT doctor_availability_no_overlap
+    EXCLUDE USING gist (doctor_id WITH =, period WITH &&)
+    WHERE (is_active);
+
+ALTER TABLE scheduling.appointments
+    ADD CONSTRAINT appointments_doctor_no_overlap
+    EXCLUDE USING gist (doctor_id WITH =, period WITH &&)
+    WHERE (status IN ('booked', 'completed'));
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL,caption={Функция получения актуальной цены услуги},label={lst:appendix-get-service-price}]
+CREATE OR REPLACE FUNCTION catalog.get_service_price(
+    p_service_id UUID,
+    p_at TIMESTAMPTZ
+)
+RETURNS NUMERIC(12,2)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_price NUMERIC(12,2);
+BEGIN
+    SELECT sp.price
+      INTO v_price
+      FROM catalog.service_prices sp
+     WHERE sp.service_id = p_service_id
+       AND sp.effective_from <= p_at
+       AND (sp.effective_to IS NULL OR sp.effective_to > p_at)
+     ORDER BY sp.effective_from DESC
+     LIMIT 1;
+
+    IF v_price IS NULL THEN
+        RAISE EXCEPTION USING ERRCODE = '22023',
+            MESSAGE = format('Price is not found for service %s at %s',
+                             p_service_id,
+                             p_at);
+    END IF;
+
+    RETURN v_price;
+END;
+$$;
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL,caption={Фрагмент функции записи на прием},label={lst:appendix-book-appointment}]
+CREATE OR REPLACE FUNCTION scheduling.book_appointment(
+    p_patient_id UUID,
+    p_doctor_id UUID,
+    p_service_id UUID,
+    p_starts_at TIMESTAMPTZ,
+    p_created_by_user_id UUID,
+    p_note TEXT DEFAULT NULL
+)
+RETURNS UUID
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_duration INTEGER;
+    v_ends_at TIMESTAMPTZ;
+    v_appointment_id UUID;
+BEGIN
+    IF p_starts_at <= NOW() THEN
+        RAISE EXCEPTION USING ERRCODE = '22023',
+            MESSAGE = 'Appointment start time must be in the future';
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1 FROM medical.patients
+         WHERE id = p_patient_id
+           AND status = 'active'
+    ) THEN
+        RAISE EXCEPTION USING ERRCODE = '22023',
+            MESSAGE = format('Patient %s is inactive', p_patient_id);
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1 FROM medical.doctors
+         WHERE id = p_doctor_id
+           AND status = 'active'
+    ) THEN
+        RAISE EXCEPTION USING ERRCODE = '22023',
+            MESSAGE = format('Doctor %s is inactive', p_doctor_id);
+    END IF;
+
+    IF NOT EXISTS (
+        SELECT 1
+          FROM medical.doctor_services
+         WHERE doctor_id = p_doctor_id
+           AND service_id = p_service_id
+    ) THEN
+        RAISE EXCEPTION USING ERRCODE = '22023',
+            MESSAGE = format('Service %s is not assigned to doctor %s',
+                             p_service_id,
+                             p_doctor_id);
+    END IF;
+
+    SELECT duration_minutes
+      INTO v_duration
+      FROM catalog.services
+     WHERE id = p_service_id
+       AND status = 'active';
+
+    IF v_duration IS NULL THEN
+        RAISE EXCEPTION USING ERRCODE = '22023',
+            MESSAGE = format('Service %s is inactive', p_service_id);
+    END IF;
+
+    v_ends_at := p_starts_at + make_interval(mins => v_duration);
+
+    IF NOT EXISTS (
+        SELECT 1
+          FROM scheduling.doctor_availability da
+         WHERE da.doctor_id = p_doctor_id
+           AND da.is_active
+           AND da.starts_at <= p_starts_at
+           AND da.ends_at >= v_ends_at
+    ) THEN
+        RAISE EXCEPTION USING ERRCODE = '22023',
+            MESSAGE = 'Time is outside doctor availability';
+    END IF;
+
+    INSERT INTO scheduling.appointments (
+        patient_id,
+        doctor_id,
+        booked_service_id,
+        starts_at,
+        ends_at,
+        status,
+        note,
+        created_by_user_id
+    )
+    VALUES (
+        p_patient_id,
+        p_doctor_id,
+        p_service_id,
+        p_starts_at,
+        v_ends_at,
+        'booked',
+        p_note,
+        p_created_by_user_id
+    )
+    RETURNING id INTO v_appointment_id;
+
+    RETURN v_appointment_id;
+END;
+$$;
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL,caption={Триггеры пересчета состояния счета},label={lst:appendix-refresh-invoice-triggers}]
+CREATE OR REPLACE FUNCTION billing.trg_refresh_invoice_from_items()
+RETURNS trigger
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    PERFORM billing.refresh_invoice_state(COALESCE(NEW.invoice_id, OLD.invoice_id));
+    RETURN COALESCE(NEW, OLD);
+END;
+$$;
+
+CREATE TRIGGER trg_invoice_items_refresh_invoice
+AFTER INSERT OR UPDATE OR DELETE ON billing.invoice_items
+FOR EACH ROW
+EXECUTE FUNCTION billing.trg_refresh_invoice_from_items();
+
+CREATE TRIGGER trg_payments_refresh_invoice
+AFTER INSERT OR UPDATE OR DELETE ON billing.payments
+FOR EACH ROW
+EXECUTE FUNCTION billing.trg_refresh_invoice_from_payments();
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL,caption={Реализация ролей базы данных},label={lst:appendix-db-roles}]
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'clinic_owner') THEN
+        CREATE ROLE clinic_owner NOLOGIN;
+    END IF;
+
+    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'clinic_api') THEN
+        CREATE ROLE clinic_api NOLOGIN;
+    END IF;
+
+    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'clinic_reporting') THEN
+        CREATE ROLE clinic_reporting NOLOGIN;
+    END IF;
+END
+$$;
+
+GRANT USAGE ON SCHEMA security, catalog, medical, scheduling, billing
+TO clinic_api, clinic_reporting;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES
+IN SCHEMA security, catalog, medical, scheduling, billing
+TO clinic_api;
+
+GRANT EXECUTE ON ALL FUNCTIONS
+IN SCHEMA security, catalog, medical, scheduling, billing
+TO clinic_api;
+
+GRANT SELECT ON ALL TABLES
+IN SCHEMA security, catalog, medical, scheduling, billing
+TO clinic_reporting;
+\end{lstlisting}
+
+\begin{lstlisting}[language=Go,caption={Вызов функций PostgreSQL из репозитория},label={lst:appendix-go-repository}]
+func (r *AppointmentRepository) Book(
+    ctx context.Context,
+    command model.BookAppointmentCommand,
+) (uuid.UUID, error) {
+    var appointmentID uuid.UUID
+    const query = "SELECT scheduling.book_appointment($1, $2, $3, " +
+        "$4, $5, $6)"
+    err := r.db.QueryRowContext(ctx, query,
+        command.PatientID,
+        command.DoctorID,
+        command.ServiceID,
+        command.StartsAt,
+        command.CreatedByUserID,
+        nullableString(command.Note),
+    ).Scan(&appointmentID)
+
+    return appointmentID, err
+}
+
+func (r *AppointmentRepository) RegisterPayment(
+    ctx context.Context,
+    command model.RegisterPaymentCommand,
+) (uuid.UUID, error) {
+    var paymentID uuid.UUID
+    const query = "SELECT billing.register_payment($1, $2, $3, $4, $5)"
+    err := r.db.QueryRowContext(ctx, query,
+        command.InvoiceID,
+        command.Amount,
+        string(command.PaymentMethod),
+        command.ReceivedByUserID,
+        nullableString(command.ExternalReference),
+    ).Scan(&paymentID)
+
+    return paymentID, err
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=SQL,caption={Проверка запрета пересечения записей},label={lst:appendix-overlap-test}]
+BEGIN
+    PERFORM scheduling.book_appointment(
+        v_patient_2,
+        v_doctor,
+        v_service_consult,
+        TIMESTAMPTZ '2030-01-15 10:15:00+03',
+        v_patient_user,
+        'SCENARIO_OVERLAP_REJECT'
+    );
+    v_rejected := FALSE;
+EXCEPTION WHEN OTHERS THEN
+    v_rejected := TRUE;
+END;
+
+IF NOT v_rejected THEN
+    RAISE EXCEPTION 'Overlapping booking was not rejected';
+END IF;
+\end{lstlisting}
+
+К расчётно-пояснительной записке курсовой работы прилагаются следующие материалы:
+\begin{itemize}
+    \item презентация к курсовой работе, состоящая из 21 слайда;
+    \item USB-флеш-накопитель с исходными кодами, электронными версиями РПЗ и презентации.
+\end{itemize}
+
+\clearpage

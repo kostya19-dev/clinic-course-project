@@ -1,0 +1,40 @@
+digraph G {
+  graph [rankdir=TB, splines=ortho, nodesep=0.45, ranksep=0.55, fontname="Times New Roman"];
+  node [shape=box, style="rounded", fontname="Times New Roman", fontsize=12, margin="0.12,0.08"];
+  edge [fontname="Times New Roman", fontsize=11];
+
+  s [label="Начало"];
+  t1 [shape=diamond, label="Дата и время начала приема
+в будущем?"];
+  t2 [shape=diamond, label="Пациент активен?"];
+  t3 [shape=diamond, label="Врач активен?"];
+  t4 [shape=diamond, label="Услуга закреплена
+за врачом?"];
+  t5 [label="Получить длительность
+и вычислить время окончания"];
+  t6 [shape=diamond, label="Интервал входит
+в доступность врача?"];
+  t7 [shape=diamond, label="Врач отсутствует
+в этот интервал?"];
+  ok [label="Вставить запись
+в appointments"];
+  ret [label="Вернуть идентификатор
+записи (UUID)"];
+  err [label="Завершить с ошибкой", shape=box];
+
+  s -> t1;
+  t1 -> err [label="нет"];
+  t1 -> t2 [label="да"];
+  t2 -> err [label="нет"];
+  t2 -> t3 [label="да"];
+  t3 -> err [label="нет"];
+  t3 -> t4 [label="да"];
+  t4 -> err [label="нет"];
+  t4 -> t5 [label="да"];
+  t5 -> t6;
+  t6 -> err [label="нет"];
+  t6 -> t7 [label="да"];
+  t7 -> err [label="да"];
+  t7 -> ok [label="нет"];
+  ok -> ret;
+}

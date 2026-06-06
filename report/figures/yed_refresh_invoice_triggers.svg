@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="620" height="670" viewBox="0 0 620 670">
+  <ns0:defs>
+    <ns0:marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse">
+      <ns0:path d="M 0 0 L 12 6 L 0 12 z" fill="#000000" />
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:polyline points="310.00,82.00 310.00,125.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="310.00,187.00 310.00,235.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="310.00,297.00 310.00,345.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="310.00,413.00 310.00,465.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="310.00,527.00 310.00,585.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:rect x="220.00" y="30.00" width="180.00" height="52.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" rx="22" ry="22" />
+  <ns0:text x="310.00" y="59.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="310.00">Начало</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="150.00" y="125.00" width="320.00" height="62.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="310.00" y="150.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="310.00">Изменение</ns0:tspan>
+    <ns0:tspan x="310.00" dy="19.52">invoice_items / payments</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="180.00" y="235.00" width="260.00" height="62.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="310.00" y="260.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="310.00">Срабатывает</ns0:tspan>
+    <ns0:tspan x="310.00" dy="19.52">AFTER-триггер</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="130.00" y="345.00" width="360.00" height="68.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="310.00" y="373.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="310.00">Вызвать</ns0:tspan>
+    <ns0:tspan x="310.00" dy="19.52">refresh_invoice_state(invoice_id)</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="180.00" y="465.00" width="260.00" height="62.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" rx="22" ry="22" />
+  <ns0:text x="310.00" y="499.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="310.00">Вернуть NEW / OLD</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="220.00" y="585.00" width="180.00" height="52.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" rx="22" ry="22" />
+  <ns0:text x="310.00" y="614.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="310.00">Конец</ns0:tspan>
+  </ns0:text>
+</ns0:svg>

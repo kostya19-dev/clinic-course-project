@@ -1,0 +1,53 @@
+@startuml
+skinparam dpi 220
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "DejaVu Sans"
+skinparam shadowing false
+skinparam ParticipantPadding 28
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 240
+skinparam ParticipantBackgroundColor #EEF1FB
+skinparam ParticipantBorderColor #111827
+skinparam ActorBackgroundColor #EEF1FB
+skinparam ActorBorderColor #111827
+skinparam DatabaseBackgroundColor #EEF1FB
+skinparam DatabaseBorderColor #111827
+skinparam ArrowColor #111827
+skinparam LifeLineBorderColor #6B7280
+skinparam TitleFontSize 18
+skinparam TitleFontStyle bold
+skinparam sequence {
+  ArrowColor #111827
+  LifeLineBorderColor #6B7280
+  LifeLineBackgroundColor #FFFFFF
+  ActivationBorderColor #111827
+  ActivationBackgroundColor #FFFFFF
+  ParticipantBorderColor #111827
+  ParticipantBackgroundColor #EEF1FB
+  ActorBorderColor #111827
+  ActorBackgroundColor #EEF1FB
+  DatabaseBorderColor #111827
+  DatabaseBackgroundColor #EEF1FB
+}
+hide footbox
+
+title Изменение данных и инвалидация кэша
+
+actor "Клиент" as Client
+participant "Приложение" as App
+database "Redis" as Redis
+database "PostgreSQL" as Postgres
+
+Client -> App: создать / отменить / завершить запись
+activate App
+App -> Postgres: book / cancel / complete
+activate Postgres
+Postgres --> App: OK
+deactivate Postgres
+App -> Redis: DEL clinic:schedule:doctor:*
+activate Redis
+Redis --> App: OK
+deactivate Redis
+App --> Client: 200 OK / 201 Created
+deactivate App
+@enduml

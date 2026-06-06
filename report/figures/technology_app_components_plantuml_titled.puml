@@ -1,0 +1,102 @@
+@startdot
+digraph G {
+  graph [
+    rankdir=LR,
+    bgcolor="white",
+    pad="0.25",
+    nodesep="1.15",
+    ranksep="0.75",
+    splines=ortho,
+    fontname="DejaVu Sans",
+    label="Схема программного обеспечения",
+    labelloc=t,
+    fontsize=24
+  ];
+  node [
+    fontname="DejaVu Sans",
+    fontsize=18,
+    color="#111827",
+    penwidth=1.6,
+    style="filled",
+    fillcolor="#EEF1FB",
+    shape=box
+  ];
+  edge [
+    fontname="DejaVu Sans",
+    fontsize=14,
+    color="#111827",
+    penwidth=1.4,
+    arrowsize=0.8
+  ];
+
+  subgraph cluster_clinic {
+    label="VitaLine Clinic";
+    labelloc=t;
+    fontsize=18;
+    fontname="DejaVu Sans";
+    color="#111827";
+    penwidth=1.8;
+    style="rounded";
+
+    User [
+      shape=plaintext,
+      fillcolor="white",
+      label="Пользователь\nпациент / врач /\nадминистратор"
+    ];
+
+    Frontend [
+      label="Frontend\nReact + TypeScript",
+      width=2.1,
+      height=0.8
+    ];
+
+    subgraph cluster_backend {
+      label="Backend API\nGo / Gin";
+      labelloc=t;
+      fontsize=17;
+      fontname="DejaVu Sans";
+      color="#111827";
+      penwidth=1.5;
+      style="rounded";
+
+      Handler [
+        label="Handler\nHTTP DTO",
+        width=1.65,
+        height=0.8
+      ];
+      Service [
+        label="Service\nбизнес-логика",
+        width=1.85,
+        height=0.8
+      ];
+      Repository [
+        label="Repository\ndatabase/sql",
+        width=1.85,
+        height=0.8
+      ];
+
+      Handler -> Service;
+      Service -> Repository;
+    }
+
+    BottomStore [
+      label="PostgreSQL\nосновная СУБД",
+      shape=cylinder,
+      width=2.0,
+      height=0.95
+    ];
+    TopStore [
+      label="Redis\nInMemory cache",
+      shape=cylinder,
+      width=1.8,
+      height=0.95
+    ];
+    { rank=same; TopStore; BottomStore; }
+
+    User -> Frontend [label="действие"];
+    Frontend -> Handler [label="REST / JSON"];
+    Repository -> TopStore [label="GET / SET"];
+    Repository -> BottomStore [label="SQL / функции"];
+  }
+}
+@enddot

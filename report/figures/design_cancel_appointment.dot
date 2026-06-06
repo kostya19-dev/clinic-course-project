@@ -1,0 +1,26 @@
+digraph G {
+  graph [rankdir=TB, splines=ortho, nodesep=0.45, ranksep=0.6, fontname="Times New Roman"];
+  node [shape=box, style="rounded", fontname="Times New Roman", fontsize=12, margin="0.12,0.08"];
+  edge [fontname="Times New Roman", fontsize=11];
+
+  s [label="Начало"];
+  a1 [label="Найти запись\nс FOR UPDATE"];
+  a2 [shape=diamond, label="Запись найдена?"];
+  a3 [shape=diamond, label="Статус = booked?"];
+  a4 [shape=diamond, label="Исполнитель --\nадминистратор?"];
+  a5 [shape=diamond, label="До приема >= 24 часа?"];
+  a6 [label="Обновить запись:\nstatus = cancelled,\nпричина отмены,\nкто отменил"];
+  ok [label="Завершение"];
+  err [label="Завершить с ошибкой"];
+
+  s -> a1 -> a2;
+  a2 -> err [label="нет"];
+  a2 -> a3 [label="да"];
+  a3 -> err [label="нет"];
+  a3 -> a4 [label="да"];
+  a4 -> a6 [label="да"];
+  a4 -> a5 [label="нет"];
+  a5 -> err [label="нет"];
+  a5 -> a6 [label="да"];
+  a6 -> ok;
+}

@@ -1,0 +1,75 @@
+\documentclass[tikz,border=8pt]{standalone}
+
+\usepackage{fontspec}
+\setmainfont{Liberation Serif}
+\usetikzlibrary{positioning,shapes.geometric}
+
+\begin{document}
+\begin{tikzpicture}[
+    usecase/.style={
+        ellipse,
+        draw,
+        line width=0.75pt,
+        align=center,
+        minimum width=3.35cm,
+        minimum height=0.78cm,
+        font=\small
+    },
+    association/.style={line width=0.7pt},
+    actorlabel/.style={align=center,font=\small}
+]
+
+\newcommand{\actor}[3]{
+    \coordinate (#1-body) at (#2,#3);
+    \coordinate (#1-left-hand) at (#2-0.46,#3-0.10);
+    \coordinate (#1-right-hand) at (#2+0.46,#3-0.10);
+    \draw[line width=0.8pt] (#2,#3+0.42) circle (0.22);
+    \draw[line width=0.8pt] (#2,#3+0.20) -- (#2,#3-0.55);
+    \draw[line width=0.8pt] (#2-0.46,#3-0.10) -- (#2+0.46,#3-0.10);
+    \draw[line width=0.8pt] (#2,#3-0.55) -- (#2-0.42,#3-1.18);
+    \draw[line width=0.8pt] (#2,#3-0.55) -- (#2+0.42,#3-1.18);
+}
+
+\draw[line width=1pt] (0,0) rectangle (13.2,-12.2);
+\node[font=\bfseries] at (6.6,-0.35) {Информационная система медицинской клиники};
+
+\actor{admin}{-1.25}{-5.3}
+\node[actorlabel] at (-1.25,-6.78) {Администратор};
+
+\actor{patient}{14.45}{-3.35}
+\node[actorlabel] at (14.45,-4.83) {Пациент};
+
+\actor{doctor}{14.45}{-8.0}
+\node[actorlabel] at (14.45,-9.48) {Врач};
+
+\node[usecase] (patient-register) at (3.0,-2.55) {Регистрация\\пациента};
+\node[usecase] (schedule-manage) at (3.0,-4.15) {Управление\\расписанием врача};
+\node[usecase] (payment-register) at (3.0,-5.75) {Регистрация\\оплаты};
+\node[usecase] (catalog-manage) at (3.0,-7.35) {Управление\\справочниками};
+
+\node[usecase] (price-list) at (10.05,-1.95) {Просмотр\\прайс-листа};
+\node[usecase] (appointment-book) at (10.05,-3.45) {Запись\\на прием};
+\node[usecase] (appointment-cancel) at (10.05,-4.95) {Отмена\\записи};
+\node[usecase] (patient-history) at (10.05,-6.45) {Просмотр\\истории посещений};
+
+\node[usecase] (doctor-schedule) at (10.05,-7.95) {Просмотр\\своего расписания};
+\node[usecase] (visit-complete) at (10.05,-9.45) {Проведение\\приема};
+\node[usecase] (visit-results) at (10.05,-10.95) {Внесение\\результатов приема};
+
+\draw[association] (admin-right-hand) -- (patient-register.west);
+\draw[association] (admin-right-hand) -- (schedule-manage.west);
+\draw[association] (admin-right-hand) -- (payment-register.west);
+\draw[association] (admin-right-hand) -- (catalog-manage.west);
+
+\draw[association] (patient-left-hand) -- (price-list.east);
+\draw[association] (patient-left-hand) -- (appointment-book.east);
+\draw[association] (patient-left-hand) -- (appointment-cancel.east);
+\draw[association] (patient-left-hand) -- (patient-history.20);
+
+\draw[association] (doctor-left-hand) -- (doctor-schedule.east);
+\draw[association] (doctor-left-hand) -- (visit-complete.east);
+\draw[association] (doctor-left-hand) -- (visit-results.east);
+\draw[association] (doctor-left-hand) -- (patient-history.-20);
+
+\end{tikzpicture}
+\end{document}

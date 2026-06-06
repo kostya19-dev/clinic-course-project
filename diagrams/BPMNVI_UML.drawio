@@ -1,0 +1,229 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram name="Проведение приёма врачом" id="seq-visit">
+    <mxGraphModel dx="1603" dy="1015" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1400" pageHeight="1700" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=17;fontStyle=1;" value="Проведение приёма врачом" vertex="1">
+          <mxGeometry height="30" width="1400" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="lt1" parent="1" style="shape=mxgraph.uml.lifeline;whiteSpace=wrap;html=0;fillColor=#FFCC00;strokeColor=#000000;fontStyle=1;fontSize=13;" value="Врач" vertex="1">
+          <mxGeometry height="36" width="150" x="100" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ll1" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="175" y="96" as="sourcePoint" />
+            <mxPoint x="175" y="1580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lb1" parent="1" style="shape=mxgraph.uml.lifeline;whiteSpace=wrap;html=0;fillColor=#FFCC00;strokeColor=#000000;fontStyle=1;fontSize=13;" value="Врач" vertex="1">
+          <mxGeometry height="36" width="150" x="100" y="1580" as="geometry" />
+        </mxCell>
+        <mxCell id="lt2" parent="1" style="shape=mxgraph.uml.lifeline;whiteSpace=wrap;html=0;fillColor=#FFCC00;strokeColor=#000000;fontStyle=1;fontSize=13;" value="Веб-приложение" vertex="1">
+          <mxGeometry height="36" width="150" x="395" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ll2" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="96" as="sourcePoint" />
+            <mxPoint x="470" y="1580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lb2" parent="1" style="shape=mxgraph.uml.lifeline;whiteSpace=wrap;html=0;fillColor=#FFCC00;strokeColor=#000000;fontStyle=1;fontSize=13;" value="Веб-приложение" vertex="1">
+          <mxGeometry height="36" width="150" x="395" y="1580" as="geometry" />
+        </mxCell>
+        <mxCell id="lt3" parent="1" style="shape=mxgraph.uml.lifeline;whiteSpace=wrap;html=0;fillColor=#FFCC00;strokeColor=#000000;fontStyle=1;fontSize=13;" value="Бэкенд (API)" vertex="1">
+          <mxGeometry height="36" width="150" x="685" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ll3" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="96" as="sourcePoint" />
+            <mxPoint x="760" y="1580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lb3" parent="1" style="shape=mxgraph.uml.lifeline;whiteSpace=wrap;html=0;fillColor=#FFCC00;strokeColor=#000000;fontStyle=1;fontSize=13;" value="Бэкенд (API)" vertex="1">
+          <mxGeometry height="36" width="150" x="685" y="1580" as="geometry" />
+        </mxCell>
+        <mxCell id="lt4" parent="1" style="shape=mxgraph.uml.lifeline;whiteSpace=wrap;html=0;fillColor=#FFCC00;strokeColor=#000000;fontStyle=1;fontSize=13;" value="База данных" vertex="1">
+          <mxGeometry height="36" width="150" x="985" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ll4" edge="1" parent="1" style="endArrow=none;dashed=1;html=1;strokeColor=#000000;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1060" y="96" as="sourcePoint" />
+            <mxPoint x="1060" y="1580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lb4" parent="1" style="shape=mxgraph.uml.lifeline;whiteSpace=wrap;html=0;fillColor=#FFCC00;strokeColor=#000000;fontStyle=1;fontSize=13;" value="База данных" vertex="1">
+          <mxGeometry height="36" width="150" x="985" y="1580" as="geometry" />
+        </mxCell>
+        <mxCell id="s1lbl" parent="1" style="text;html=0;strokeColor=#999999;fillColor=#f0f0f0;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;fontStyle=1;fontColor=#000000;" value="1. Получение записей на день" vertex="1">
+          <mxGeometry height="22" width="280" x="30" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="m01" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="Открыть список записей на день">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="175" y="182" as="sourcePoint" />
+            <mxPoint x="175" y="182" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m02" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="Запрос записей на день">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="175" y="232" as="sourcePoint" />
+            <mxPoint x="470" y="232" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m03" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="GET /appointments?doctorID=&amp;date=">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="282" as="sourcePoint" />
+            <mxPoint x="760" y="282" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m04" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="SELECT appointments WHERE doctorID AND date">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="332" as="sourcePoint" />
+            <mxPoint x="1060" y="332" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m05" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#000000;fontSize=11;" value="[]AppointmentEntity">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1060" y="382" as="sourcePoint" />
+            <mxPoint x="760" y="382" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m06" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#000000;fontSize=11;" value="200 OK: []AppointmentResponseDTO">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="432" as="sourcePoint" />
+            <mxPoint x="470" y="432" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m07" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#000000;fontSize=11;" value="Отображение списка пациентов на день">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="482" as="sourcePoint" />
+            <mxPoint x="175" y="482" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s2lbl" parent="1" style="text;html=0;strokeColor=#999999;fillColor=#f0f0f0;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;fontStyle=1;fontColor=#000000;" value="2. Открытие медицинской карты пациента" vertex="1">
+          <mxGeometry height="22" width="340" x="30" y="526" as="geometry" />
+        </mxCell>
+        <mxCell id="m08" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="Выбрать пациента из списка">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="175" y="568" as="sourcePoint" />
+            <mxPoint x="175" y="568" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m09" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="Открыть медицинскую карту пациента">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="175" y="618" as="sourcePoint" />
+            <mxPoint x="470" y="618" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m10" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="GET /visits/patient/:patientID">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="668" as="sourcePoint" />
+            <mxPoint x="760" y="668" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m11" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="SELECT visits WHERE patientID">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="718" as="sourcePoint" />
+            <mxPoint x="1060" y="718" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m12" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#000000;fontSize=11;" value="[]VisitEntity (история приёмов)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1060" y="768" as="sourcePoint" />
+            <mxPoint x="760" y="768" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m13" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#000000;fontSize=11;" value="200 OK: []VisitResponseDTO">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="818" as="sourcePoint" />
+            <mxPoint x="470" y="818" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m14" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#000000;fontSize=11;" value="Отображение медицинской карты">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="868" as="sourcePoint" />
+            <mxPoint x="175" y="868" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s3lbl" parent="1" style="text;html=0;strokeColor=#999999;fillColor=#f0f0f0;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;fontStyle=1;fontColor=#000000;" value="3. Проведение приёма и сохранение результатов" vertex="1">
+          <mxGeometry height="22" width="390" x="30" y="912" as="geometry" />
+        </mxCell>
+        <mxCell id="m15" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="Провести приём пациента">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="175" y="954" as="sourcePoint" />
+            <mxPoint x="175" y="954" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m16" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="Внести жалобы, диагноз и рекомендации">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="175" y="1004" as="sourcePoint" />
+            <mxPoint x="175" y="1004" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m17" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="Сохранить результаты приёма">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="175" y="1054" as="sourcePoint" />
+            <mxPoint x="470" y="1054" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m18" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="POST /visits {CreateVisitDTO}">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="1104" as="sourcePoint" />
+            <mxPoint x="760" y="1104" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m19" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="INSERT INTO visits (...)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="1154" as="sourcePoint" />
+            <mxPoint x="1060" y="1154" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m20" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#000000;fontSize=11;" value="OK">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1060" y="1204" as="sourcePoint" />
+            <mxPoint x="760" y="1204" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s4lbl" parent="1" style="text;html=0;strokeColor=#999999;fillColor=#f0f0f0;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;fontStyle=1;fontColor=#000000;" value="4. Назначение оказанной услуги  [опционально]" vertex="1">
+          <mxGeometry height="22" width="380" x="30" y="1248" as="geometry" />
+        </mxCell>
+        <mxCell id="m21" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="Назначить оказанную услугу">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="175" y="1290" as="sourcePoint" />
+            <mxPoint x="470" y="1290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m22" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="POST /visits/:id/services {ServiceDTO}">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="1340" as="sourcePoint" />
+            <mxPoint x="760" y="1340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m23" edge="1" parent="1" style="endArrow=block;endFill=1;html=1;strokeColor=#000000;fontSize=11;" value="INSERT INTO visit_services (...)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="1390" as="sourcePoint" />
+            <mxPoint x="1060" y="1390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m24" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#000000;fontSize=11;" value="OK">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1060" y="1440" as="sourcePoint" />
+            <mxPoint x="760" y="1440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m25" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#000000;fontSize=11;" value="200 OK: VisitResponseDTO (обновлено)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="1490" as="sourcePoint" />
+            <mxPoint x="470" y="1490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m26" edge="1" parent="1" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#000000;fontSize=11;" value="Приём завершён, данные сохранены">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="1540" as="sourcePoint" />
+            <mxPoint x="175" y="1540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

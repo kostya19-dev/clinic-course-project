@@ -1,0 +1,79 @@
+@startuml
+skinparam dpi 220
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "DejaVu Sans"
+skinparam shadowing false
+skinparam sequence {
+  ArrowColor #111827
+  LifeLineBorderColor #6B7280
+  LifeLineBackgroundColor #FFFFFF
+  ParticipantBorderColor #111827
+  ParticipantBackgroundColor #EEF1FB
+  ActorBorderColor #111827
+  ActorBackgroundColor #EEF1FB
+  DatabaseBorderColor #111827
+  DatabaseBackgroundColor #EEF1FB
+  GroupBorderColor #111827
+  GroupBackgroundColor #FFFFFF
+  GroupHeaderFontColor #111827
+  GroupHeaderFontStyle bold
+  GroupFontSize 16
+  MessageFontSize 14
+  ParticipantFontSize 14
+  BoxPadding 12
+}
+skinparam ParticipantPadding 34
+skinparam sequenceMessageAlign center
+skinparam maxMessageSize 120
+show footbox
+
+actor "Клиент" as Client
+participant "Приложение" as App
+database "Redis\nInMemory СУБД" as Redis
+database "PostgreSQL\nреляционная СУБД" as Postgres
+
+group 1. Чтение при отсутствии данных в кэше
+  Client -> App: открыть расписание / прайс
+  activate App
+  App -> Redis: GET clinic:*
+  activate Redis
+  Redis --> App: NULL
+  deactivate Redis
+  App -> Postgres: SELECT ... FROM scheduling/catalog
+  activate Postgres
+  Postgres --> App: строки результата
+  deactivate Postgres
+  App -> Redis: SET clinic:* EX ttl
+  activate Redis
+  Redis --> App: OK
+  deactivate Redis
+  App --> Client: 200 OK: данные из PostgreSQL
+  deactivate App
+end
+
+group 2. Чтение при наличии данных в кэше
+  Client -> App: открыть расписание / прайс
+  activate App
+  App -> Redis: GET clinic:*
+  activate Redis
+  Redis --> App: JSON результата
+  deactivate Redis
+  App --> Client: 200 OK: данные из Redis
+  deactivate App
+end
+
+group 3. Инвалидация кэша расписания после изменения записи
+  Client -> App: создать / отменить / завершить запись
+  activate App
+  App -> Postgres: book / cancel / complete
+  activate Postgres
+  Postgres --> App: OK
+  deactivate Postgres
+  App -> Redis: DEL clinic:schedule:doctor:*
+  activate Redis
+  Redis --> App: OK
+  deactivate Redis
+  App --> Client: 200 / 201 OK
+  deactivate App
+end
+@enduml

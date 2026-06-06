@@ -1,0 +1,4 @@
+rows,http_no_index_ms,http_with_index_ms,redis_http_hit_ms,index_gain_percent,redis_gain_percent,total_gain_percent
+5000,36.893,29.719,26.801,19.44,9.82,27.35
+20000,149.756,105.388,97.442,29.63,7.54,34.93
+50000,292.108,279.806,260.563,4.21,6.88,10.80

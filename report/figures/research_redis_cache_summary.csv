@@ -1,0 +1,4 @@
+rows,postgres_http_miss_ms,redis_http_hit_ms,gain_percent
+5000,67.353,45.300,32.74
+20000,149.374,136.565,8.57
+50000,349.171,319.293,8.56

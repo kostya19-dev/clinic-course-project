@@ -1,0 +1,70 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: clinic_course_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: clinic_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - clinic_pgdata:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./db/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d clinic_db"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: clinic_course_redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6380}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    image: clinic-course-backend:local
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: clinic_course_backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      HTTP_ADDRESS: :8080
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/clinic_db?sslmode=disable
+      REDIS_ADDR: redis:6379
+      SCHEDULE_CACHE_TTL: 1m
+      PRICE_LIST_CACHE_TTL: 10m
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+
+  frontend:
+    image: clinic-course-frontend:local
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: clinic_course_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      VITE_PROXY_TARGET: http://backend:8080
+    ports:
+      - "${FRONTEND_PORT:-5173}:5173"
+
+volumes:
+  clinic_pgdata:

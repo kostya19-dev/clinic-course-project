@@ -1,0 +1,331 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram name="L4 Service" id="l4svc">
+    <mxGraphModel dx="1063" dy="416" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="2339" pageHeight="3300" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ttl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=15;fontColor=#1060a0;" value="&lt;b&gt;Компонент 2 — Бизнес-логика (service)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="700" x="31" y="14" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=11;fontColor=#666666;" value="Паттерн: интерфейс → реализация (хранит интерфейсы репозиториев — DIP). Три типа сущностей: DB entity | Domain entity | DTO." vertex="1">
+          <mxGeometry height="18" width="1200" x="30" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="is1" parent="1" style="swimlane;html=1;align=center;startSize=44;arcSize=0;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" value="&lt;&lt;interface&gt;&gt;&lt;br&gt;&lt;b&gt;IAppointmentService&lt;/b&gt;" vertex="1">
+          <mxGeometry height="176" width="560" x="30" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="is1m1" connectable="0" parent="is1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetAll() : []AppointmentResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="is1m2" connectable="0" parent="is1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByID(id int) : AppointmentResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="is1m3" connectable="0" parent="is1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByPatient(patientID int) : []AppointmentResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="is1m4" connectable="0" parent="is1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetFreeSlots(doctorID int, date time.Time) : []SlotDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="is1m5" connectable="0" parent="is1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(dto CreateAppointmentDTO) : AppointmentResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="132" as="geometry" />
+        </mxCell>
+        <mxCell id="is1m6" connectable="0" parent="is1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Cancel(id int) : error" vertex="1">
+          <mxGeometry height="22" width="560" y="154" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="appointmentServiceImpl" vertex="1">
+          <mxGeometry height="214" width="560" x="30" y="326" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1f1" connectable="0" parent="rs1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;fontStyle=2;" value="-repo IAppointmentRepository" vertex="1">
+          <mxGeometry height="22" width="560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1f2" connectable="0" parent="rs1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;fontStyle=2;" value="-scheduleRepo IScheduleRepository" vertex="1">
+          <mxGeometry height="22" width="560" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1div" connectable="0" parent="rs1" style="line;html=1;strokeWidth=1;fillColor=none;rotatable=0;" value="" vertex="1">
+          <mxGeometry height="8" width="560" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1m1" connectable="0" parent="rs1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetAll() : []AppointmentResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1m2" connectable="0" parent="rs1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByID(id int) : AppointmentResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1m3" connectable="0" parent="rs1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByPatient(patientID int) : []AppointmentResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1m4" connectable="0" parent="rs1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetFreeSlots(doctorID int, date time.Time) : []SlotDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1m5" connectable="0" parent="rs1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(dto CreateAppointmentDTO) : AppointmentResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="rs1m6" connectable="0" parent="rs1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Cancel(id int) : error" vertex="1">
+          <mxGeometry height="22" width="560" y="192" as="geometry" />
+        </mxCell>
+        <mxCell id="ldb1" parent="1" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=center;fontSize=10;fontColor=#1060a0;rounded=1;" value="&lt;b&gt;DB-сущность&lt;/b&gt; (таблица)" vertex="1">
+          <mxGeometry height="17" width="270" x="30" y="572" as="geometry" />
+        </mxCell>
+        <mxCell id="ldm1" parent="1" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;fontSize=10;fontColor=#7d5800;rounded=1;" value="&lt;b&gt;Domain-сущность&lt;/b&gt; (бизнес-объект)" vertex="1">
+          <mxGeometry height="16" width="270" x="320" y="572" as="geometry" />
+        </mxCell>
+        <mxCell id="db1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="AppointmentEntity" vertex="1">
+          <mxGeometry height="162" width="270" x="30" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="db1f1" connectable="0" parent="db1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ID" vertex="1">
+          <mxGeometry height="22" width="270" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="db1f2" connectable="0" parent="db1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int PatientID" vertex="1">
+          <mxGeometry height="22" width="270" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="db1f3" connectable="0" parent="db1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ScheduleSlotID" vertex="1">
+          <mxGeometry height="22" width="270" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="db1f4" connectable="0" parent="db1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time ScheduledAt" vertex="1">
+          <mxGeometry height="22" width="270" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="db1f5" connectable="0" parent="db1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Status" vertex="1">
+          <mxGeometry height="22" width="270" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="db1f6" connectable="0" parent="db1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time CreatedAt" vertex="1">
+          <mxGeometry height="22" width="270" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="dm1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="Appointment" vertex="1">
+          <mxGeometry height="118" width="270" x="320" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="dm1f1" connectable="0" parent="dm1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ID" vertex="1">
+          <mxGeometry height="22" width="270" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dm1f2" connectable="0" parent="dm1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Patient Patient" vertex="1">
+          <mxGeometry height="22" width="270" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="dm1f3" connectable="0" parent="dm1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time ScheduledAt" vertex="1">
+          <mxGeometry height="22" width="270" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="dm1f4" connectable="0" parent="dm1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Status" vertex="1">
+          <mxGeometry height="22" width="270" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="ldto1a" parent="1" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=center;fontSize=10;fontColor=#27500a;rounded=1;" value="&lt;b&gt;DTO&lt;/b&gt; — вход API" vertex="1">
+          <mxGeometry height="16" width="260" x="30" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="ldto1b" parent="1" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=center;fontSize=10;fontColor=#27500a;rounded=1;" value="&lt;b&gt;DTO&lt;/b&gt; — выход API" vertex="1">
+          <mxGeometry height="16" width="290" x="300" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="dto1" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="CreateAppointmentDTO" vertex="1">
+          <mxGeometry height="96" width="260" x="30" y="808" as="geometry" />
+        </mxCell>
+        <mxCell id="dto1f1" connectable="0" parent="dto1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int PatientID" vertex="1">
+          <mxGeometry height="22" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dto1f2" connectable="0" parent="dto1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int DoctorID" vertex="1">
+          <mxGeometry height="22" width="260" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="dto1f3" connectable="0" parent="dto1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time DesiredTime" vertex="1">
+          <mxGeometry height="22" width="260" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="dto2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="AppointmentResponseDTO" vertex="1">
+          <mxGeometry height="118" width="290" x="300" y="808" as="geometry" />
+        </mxCell>
+        <mxCell id="dto2f1" connectable="0" parent="dto2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ID" vertex="1">
+          <mxGeometry height="22" width="290" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dto2f2" connectable="0" parent="dto2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string PatientFullName" vertex="1">
+          <mxGeometry height="22" width="290" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="dto2f3" connectable="0" parent="dto2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string DoctorFullName" vertex="1">
+          <mxGeometry height="22" width="290" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="dto2f4" connectable="0" parent="dto2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time ScheduledAt" vertex="1">
+          <mxGeometry height="22" width="290" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="is2" parent="1" style="swimlane;html=1;align=center;startSize=44;arcSize=0;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;" value="&lt;&lt;interface&gt;&gt;&lt;br&gt;&lt;b&gt;IVisitService&lt;/b&gt;" vertex="1">
+          <mxGeometry height="132" width="560" x="640" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="is2m1" connectable="0" parent="is2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByAppointment(appointmentID int) : VisitResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="is2m2" connectable="0" parent="is2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByPatient(patientID int) : []VisitResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="is2m3" connectable="0" parent="is2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(dto CreateVisitDTO) : VisitResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="is2m4" connectable="0" parent="is2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Update(id int, dto CreateVisitDTO) : VisitResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="rs2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="visitServiceImpl" vertex="1">
+          <mxGeometry height="170" width="560" x="640" y="326" as="geometry" />
+        </mxCell>
+        <mxCell id="rs2f1" connectable="0" parent="rs2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;fontStyle=2;" value="-repo IVisitRepository" vertex="1">
+          <mxGeometry height="22" width="560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rs2f2" connectable="0" parent="rs2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;fontStyle=2;" value="-appointmentRepo IAppointmentRepository" vertex="1">
+          <mxGeometry height="22" width="560" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="rs2div" connectable="0" parent="rs2" style="line;html=1;strokeWidth=1;fillColor=none;rotatable=0;" value="" vertex="1">
+          <mxGeometry height="8" width="560" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="rs2m1" connectable="0" parent="rs2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByAppointment(appointmentID int) : VisitResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="rs2m2" connectable="0" parent="rs2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+GetByPatient(patientID int) : []VisitResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="rs2m3" connectable="0" parent="rs2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Create(dto CreateVisitDTO) : VisitResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="rs2m4" connectable="0" parent="rs2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Update(id int, dto CreateVisitDTO) : VisitResponseDTO, error" vertex="1">
+          <mxGeometry height="22" width="560" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="ldb2" parent="1" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=center;fontSize=10;fontColor=#1060a0;rounded=1;" value="&lt;b&gt;DB-сущность&lt;/b&gt; (таблица)" vertex="1">
+          <mxGeometry height="16" width="270" x="640" y="572" as="geometry" />
+        </mxCell>
+        <mxCell id="ldm2" parent="1" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;fontSize=10;fontColor=#7d5800;rounded=1;" value="&lt;b&gt;Domain-сущность&lt;/b&gt; (бизнес-объект)" vertex="1">
+          <mxGeometry height="16" width="270" x="930" y="572" as="geometry" />
+        </mxCell>
+        <mxCell id="db2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="VisitEntity" vertex="1">
+          <mxGeometry height="184" width="270" x="640" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="db2f1" connectable="0" parent="db2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ID" vertex="1">
+          <mxGeometry height="22" width="270" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="db2f2" connectable="0" parent="db2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int AppointmentID" vertex="1">
+          <mxGeometry height="22" width="270" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="db2f3" connectable="0" parent="db2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Complaints" vertex="1">
+          <mxGeometry height="22" width="270" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="db2f4" connectable="0" parent="db2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Diagnosis" vertex="1">
+          <mxGeometry height="22" width="270" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="db2f5" connectable="0" parent="db2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Recommendations" vertex="1">
+          <mxGeometry height="22" width="270" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="db2f6" connectable="0" parent="db2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string VisitStatus" vertex="1">
+          <mxGeometry height="22" width="270" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="db2f7" connectable="0" parent="db2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+time.Time CreatedAt" vertex="1">
+          <mxGeometry height="22" width="270" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="dm2" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="Visit" vertex="1">
+          <mxGeometry height="118" width="270" x="930" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="dm2f1" connectable="0" parent="dm2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ID" vertex="1">
+          <mxGeometry height="22" width="270" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dm2f2" connectable="0" parent="dm2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+Appointment Appointment" vertex="1">
+          <mxGeometry height="22" width="270" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="dm2f3" connectable="0" parent="dm2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Complaints" vertex="1">
+          <mxGeometry height="22" width="270" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="dm2f4" connectable="0" parent="dm2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Status" vertex="1">
+          <mxGeometry height="22" width="270" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="ldto2a" parent="1" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=center;fontSize=10;fontColor=#27500a;rounded=1;" value="&lt;b&gt;DTO&lt;/b&gt; — вход API" vertex="1">
+          <mxGeometry height="16" width="260" x="640" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="ldto2b" parent="1" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=center;fontSize=10;fontColor=#27500a;rounded=1;" value="&lt;b&gt;DTO&lt;/b&gt; — выход API" vertex="1">
+          <mxGeometry height="16" width="290" x="910" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="dto3" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="CreateVisitDTO" vertex="1">
+          <mxGeometry height="118" width="260" x="640" y="808" as="geometry" />
+        </mxCell>
+        <mxCell id="dto3f1" connectable="0" parent="dto3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int AppointmentID" vertex="1">
+          <mxGeometry height="22" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dto3f2" connectable="0" parent="dto3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Complaints" vertex="1">
+          <mxGeometry height="22" width="260" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="dto3f3" connectable="0" parent="dto3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Diagnosis" vertex="1">
+          <mxGeometry height="22" width="260" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="dto3f4" connectable="0" parent="dto3" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Recommendations" vertex="1">
+          <mxGeometry height="22" width="260" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="dto4" parent="1" style="swimlane;fontStyle=1;align=center;startSize=30;arcSize=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="VisitResponseDTO" vertex="1">
+          <mxGeometry height="162" width="290" x="910" y="808" as="geometry" />
+        </mxCell>
+        <mxCell id="dto4f1" connectable="0" parent="dto4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+int ID" vertex="1">
+          <mxGeometry height="22" width="290" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dto4f2" connectable="0" parent="dto4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string PatientFullName" vertex="1">
+          <mxGeometry height="22" width="290" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="dto4f3" connectable="0" parent="dto4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string DoctorFullName" vertex="1">
+          <mxGeometry height="22" width="290" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="dto4f4" connectable="0" parent="dto4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Complaints" vertex="1">
+          <mxGeometry height="22" width="290" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="dto4f5" connectable="0" parent="dto4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Diagnosis" vertex="1">
+          <mxGeometry height="22" width="290" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="dto4f6" connectable="0" parent="dto4" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;overflow=hidden;rotatable=0;fontSize=11;" value="+string Status" vertex="1">
+          <mxGeometry height="22" width="290" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="ar1" edge="1" parent="1" source="rs1" style="endArrow=block;endFill=0;dashed=1;dashPattern=8 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="is1" value="реализует">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ar2" edge="1" parent="1" source="rs2" style="endArrow=block;endFill=0;dashed=1;dashPattern=8 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="is2" value="реализует">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" edge="1" parent="1" source="rs1" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;fontSize=11;exitX=0.241;exitY=1;exitDx=0;exitDy=0;" value="использует (DB)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="165" y="573" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a2" edge="1" parent="1" source="rs1" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;fontSize=11;exitX=0.759;exitY=1;exitDx=0;exitDy=0;" value="использует (Domain)">
+          <mxGeometry relative="1" x="0.0134" y="43" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="456" y="574" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a3" edge="1" parent="1" source="rs1" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0;exitY=0.58;exitDx=0;exitDy=0;" target="dto1" value="принимает (DTO)">
+          <mxGeometry relative="1" x="0.0104" y="-48" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="10" y="450" />
+              <mxPoint x="10" y="828" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4" edge="1" parent="1" source="rs1" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=1;exitY=0.58;exitDx=0;exitDy=0;" target="dto2" value="возвращает (DTO)">
+          <mxGeometry relative="1" x="0.0878" y="-18" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="608" y="450" />
+              <mxPoint x="608" y="828" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a5" edge="1" parent="1" source="rs2" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;fontSize=11;exitX=0.241;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ldb2" value="использует (DB)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="776" y="572" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a6" edge="1" parent="1" source="rs2" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;fontSize=11;exitX=0.759;exitY=1;exitDx=0;exitDy=0;" value="использует (Domain)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1066" y="574" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a7" edge="1" parent="1" source="rs2" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0;exitY=0.55;exitDx=0;exitDy=0;" target="dto3" value="принимает (DTO)">
+          <mxGeometry relative="1" x="-0.487" y="-4" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="622" y="420" />
+              <mxPoint x="622" y="828" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a8" edge="1" parent="1" source="rs2" style="endArrow=open;endSize=8;dashed=1;dashPattern=6 4;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=1;exitY=0.55;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" target="dto4" value="возвращает (DTO)">
+          <mxGeometry relative="1" x="0.0615" y="10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1218" y="420" />
+              <mxPoint x="1218" y="849" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,37 @@
+digraph ClinicER {
+    graph [rankdir=LR, splines=polyline, nodesep=0.85, ranksep=1.05, pad=0.18, bgcolor="white", fontname="Times-Roman"];
+    node [shape=record, style="rounded", color="black", fontname="Times-Roman", fontsize=11, margin="0.09,0.05"];
+    edge [color="black", arrowsize=0.75, penwidth=1.0, dir=none];
+
+    specialty [label="{Специальность|код\lназвание\l}"];
+    doctor [label="{Врач|кабинет\lстатус\l}"];
+    availability [label="{Доступность врача|начало\lконец\lслот\l}"];
+    service [label="{Услуга|код\lназвание\lдлительность\l}"];
+    service_price [label="{Цена услуги|стоимость\lпериод действия\l}"];
+    doctor_service [label="{Врач-услуга|doctor_id\lservice_id\l}"];
+    patient [label="{Пациент|ФИО\lдата рождения\lтелефон\l}"];
+    appointment [label="{Запись на прием|начало\lконец\lстатус\l}"];
+    visit [label="{Прием|диагноз\lрезультат\l}"];
+    visit_service [label="{Оказанная услуга|visit_id\lservice_id\lколичество\lцена\l}"];
+    invoice [label="{Счет|статус\lсумма\lоплачено\l}"];
+    payment [label="{Оплата|сумма\lметод\lстатус\l}"];
+
+    specialty -> doctor [weight=3];
+    doctor -> availability [weight=2];
+    doctor -> doctor_service [weight=2];
+    service -> doctor_service [weight=2];
+    service -> service_price [weight=2];
+    patient -> appointment [weight=3];
+    doctor -> appointment [weight=3];
+    service -> appointment [weight=3];
+    appointment -> visit [weight=4];
+    visit -> visit_service [weight=2];
+    service -> visit_service [weight=2];
+    visit -> invoice [weight=4];
+    invoice -> payment [weight=3];
+
+    specialty -> service [style=invis, weight=1];
+    patient -> service [style=invis, weight=1];
+    availability -> appointment [style=invis, weight=1];
+    doctor_service -> visit [style=invis, weight=1];
+}

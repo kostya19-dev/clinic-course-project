@@ -1,0 +1,28 @@
+digraph G {
+  graph [rankdir=TB, splines=ortho, nodesep=0.45, ranksep=0.55, fontname="Times New Roman"];
+  node [shape=box, style="rounded", fontname="Times New Roman", fontsize=12, margin="0.12,0.08"];
+  edge [fontname="Times New Roman", fontsize=11];
+
+  t1 [label="Изменение invoice_items"];
+  t2 [label="Изменение payments"];
+  tr1 [label="trg_refresh_invoice_from_items"];
+  tr2 [label="trg_refresh_invoice_from_payments"];
+  f1 [label="refresh_invoice_state"];
+  f2 [label="Посчитать сумму строк\nсчета"];
+  f3 [label="Посчитать сумму\nпроведенных оплат"];
+  f4 [shape=diamond, label="Сколько оплачено?"];
+  f5 [label="Статус issued"];
+  f6 [label="Статус partially_paid"];
+  f7 [label="Статус paid"];
+  f8 [label="Обновить totals, paid_amount\nи статус счета"];
+
+  t1 -> tr1 -> f1;
+  t2 -> tr2 -> f1;
+  f1 -> f2 -> f3 -> f4;
+  f4 -> f5 [label="0"];
+  f4 -> f6 [label="< total"];
+  f4 -> f7 [label=">= total"];
+  f5 -> f8;
+  f6 -> f8;
+  f7 -> f8;
+}

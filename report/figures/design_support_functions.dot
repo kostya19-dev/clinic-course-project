@@ -1,0 +1,53 @@
+digraph G {
+  graph [rankdir=TB, splines=ortho, nodesep=0.8, ranksep=1.1, pad=0.25, newrank=true, fontname="Times New Roman"];
+  node [shape=box, style="rounded", fontname="Times New Roman", fontsize=12, margin="0.16,0.10"];
+  edge [fontname="Times New Roman", fontsize=11];
+
+  subgraph cluster_updated {
+    label="Функция set_updated_at";
+    labelloc="t";
+    labeljust="c";
+    margin=18;
+    color=black;
+    u1 [label="Срабатывание BEFORE UPDATE"];
+    u2 [label="Присвоить
+NEW.updated_at = NOW()"];
+    u3 [label="Вернуть NEW"];
+    u1 -> u2 -> u3;
+  }
+
+  subgraph cluster_role {
+    label="Функция has_role";
+    labelloc="t";
+    labeljust="c";
+    margin=18;
+    color=black;
+    h1 [label="Начало"];
+    h2 [label="Проверить наличие
+записи в user_roles
+с нужным code роли"];
+    h3 [label="Вернуть true / false"];
+    h1 -> h2 -> h3;
+  }
+
+  subgraph cluster_price {
+    label="Функция get_service_price";
+    labelloc="t";
+    labeljust="c";
+    margin=18;
+    color=black;
+    p1 [label="Начало"];
+    p2 [label="Выбрать актуальную цену
+для услуги на момент времени"];
+    p3 [shape=diamond, label="Цена найдена?"];
+    p4 [label="Сгенерировать ошибку
+о неактивной цене"];
+    p5 [label="Вернуть цену"];
+    p1 -> p2 -> p3;
+    p3 -> p4 [label="нет"];
+    p3 -> p5 [label="да"];
+  }
+
+  u3 -> h1 [style=invis, weight=20, minlen=2];
+  h3 -> p1 [style=invis, weight=20, minlen=2];
+}

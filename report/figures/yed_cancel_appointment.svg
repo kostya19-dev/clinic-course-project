@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" width="900" height="1240" viewBox="0 0 900 1240">
+  <ns0:defs>
+    <ns0:marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse">
+      <ns0:path d="M 0 0 L 12 6 L 0 12 z" fill="#000000" />
+    </ns0:marker>
+  </ns0:defs>
+  <ns0:polyline points="450.00,93.00 450.00,145.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="450.00,219.00 450.00,280.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="450.00,376.00 450.00,435.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="450.00,531.00 450.00,595.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="595.00,655.00 650.00,655.00 650.00,991.00 615.00,991.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="450.00,715.00 450.00,790.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="450.00,886.00 450.00,945.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="450.00,1037.00 450.00,1095.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="560.00,328.00 795.00,328.00 795.00,990.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="560.00,483.00 795.00,483.00 795.00,990.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:polyline points="560.00,838.00 795.00,838.00 795.00,990.00" fill="none" stroke="#000000" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)" />
+  <ns0:rect x="340.00" y="35.00" width="220.00" height="58.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" rx="22" ry="22" />
+  <ns0:text x="450.00" y="67.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="450.00">Начало</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="300.00" y="145.00" width="300.00" height="74.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="450.00" y="176.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="450.00">Найти запись</ns0:tspan>
+    <ns0:tspan x="450.00" dy="19.52">с FOR UPDATE</ns0:tspan>
+  </ns0:text>
+  <ns0:polygon points="450.00,280.00 560.00,328.00 450.00,376.00 340.00,328.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="450.00" y="331.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="bold" fill="#000000">
+    <ns0:tspan x="450.00">Запись найдена?</ns0:tspan>
+  </ns0:text>
+  <ns0:polygon points="450.00,435.00 560.00,483.00 450.00,531.00 340.00,483.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="450.00" y="486.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="bold" fill="#000000">
+    <ns0:tspan x="450.00">Статус = booked?</ns0:tspan>
+  </ns0:text>
+  <ns0:polygon points="450.00,595.00 595.00,655.00 450.00,715.00 305.00,655.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="450.00" y="649.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="bold" fill="#000000">
+    <ns0:tspan x="450.00">Исполнитель —</ns0:tspan>
+    <ns0:tspan x="450.00" dy="19.52">администратор?</ns0:tspan>
+  </ns0:text>
+  <ns0:polygon points="450.00,790.00 560.00,838.00 450.00,886.00 340.00,838.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="450.00" y="841.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="bold" fill="#000000">
+    <ns0:tspan x="450.00">До приема &gt;= 24 часа?</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="285.00" y="945.00" width="330.00" height="92.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" />
+  <ns0:text x="450.00" y="965.56" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="450.00">Обновить запись:</ns0:tspan>
+    <ns0:tspan x="450.00" dy="19.52">status = cancelled,</ns0:tspan>
+    <ns0:tspan x="450.00" dy="19.52">причина отмены,</ns0:tspan>
+    <ns0:tspan x="450.00" dy="19.52">кто отменил</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="365.00" y="1095.00" width="170.00" height="56.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" rx="22" ry="22" />
+  <ns0:text x="450.00" y="1126.84" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="450.00">Завершение</ns0:tspan>
+  </ns0:text>
+  <ns0:rect x="715.00" y="990.00" width="160.00" height="62.00" fill="#ffffff" stroke="#000000" stroke-width="1.2" rx="22" ry="22" />
+  <ns0:text x="795.00" y="1015.08" text-anchor="middle" font-family="Times New Roman" font-size="16" font-weight="normal" fill="#000000">
+    <ns0:tspan x="795.00">Завершить</ns0:tspan>
+    <ns0:tspan x="795.00" dy="19.52">с ошибкой</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="640.00" y="337.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="640.00">нет</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="640.00" y="492.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="640.00">нет</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="645.00" y="670.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="645.00">да</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="640.00" y="847.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="640.00">нет</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="520.00" y="410.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="520.00">да</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="520.00" y="565.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="520.00">да</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="525.00" y="755.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="525.00">нет</ns0:tspan>
+  </ns0:text>
+  <ns0:text x="520.00" y="923.36" text-anchor="middle" font-family="Times New Roman" font-size="14" font-weight="normal" fill="#000000">
+    <ns0:tspan x="520.00">да</ns0:tspan>
+  </ns0:text>
+</ns0:svg>

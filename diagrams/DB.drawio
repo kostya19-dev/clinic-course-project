@@ -1,0 +1,304 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
+  <diagram name="VitaLine DB" id="vitadb">
+    <mxGraphModel dx="1466" dy="920" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1900" pageHeight="1200" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ttl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=15;fontColor=#1060a0;" value="&lt;b&gt;VitaLine Clinic — Схема базы данных (PostgreSQL)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="700" x="30" y="12" as="geometry" />
+        </mxCell>
+        <mxCell id="pt_h" parent="1" style="swimlane;startSize=30;html=1;align=center;fontStyle=1;fontSize=13;fillColor=#1060a0;fontColor=#ffffff;strokeColor=#1060a0;arcSize=4;" value="patients" vertex="1">
+          <mxGeometry height="212" width="260" x="30" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="pt_1" connectable="0" parent="pt_h" style="text;html=1;strokeColor=#dddddd;fillColor=#e8f0fe;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;id  serial  PK&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pt_2" connectable="0" parent="pt_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   full_name  varchar(255)  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="260" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="pt_3" connectable="0" parent="pt_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   birth_date  date  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="260" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="pt_4" connectable="0" parent="pt_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   phone  varchar(20)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="260" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="pt_5" connectable="0" parent="pt_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   email  varchar(255)  UNIQUE&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="260" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="pt_6" connectable="0" parent="pt_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   created_at  timestamp  DEFAULT now()&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="260" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="pt_note" connectable="0" parent="pt_h" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontSize=10;fontStyle=2;fontColor=#888888;rotatable=0;" value="Пациенты клиники" vertex="1">
+          <mxGeometry height="26" width="260" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="mr_h" parent="1" style="swimlane;startSize=30;html=1;align=center;fontStyle=1;fontSize=13;fillColor=#1060a0;fontColor=#ffffff;strokeColor=#1060a0;arcSize=4;" value="medical_records" vertex="1">
+          <mxGeometry height="160" width="260" x="30" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="mr_1" connectable="0" parent="mr_h" style="text;html=1;strokeColor=#dddddd;fillColor=#e8f0fe;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;id  serial  PK&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mr_2" connectable="0" parent="mr_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fff8e1;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;patient_id  int  FK  UNIQUE&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="260" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="mr_3" connectable="0" parent="mr_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   notes  text&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="260" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="mr_4" connectable="0" parent="mr_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   created_at  timestamp  DEFAULT now()&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="260" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="mr_note" connectable="0" parent="mr_h" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontSize=10;fontStyle=2;fontColor=#888888;rotatable=0;" value="Медицинская карта пациента (1:1)" vertex="1">
+          <mxGeometry height="26" width="260" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_h" parent="1" style="swimlane;startSize=30;html=1;align=center;fontStyle=1;fontSize=13;fillColor=#0e7a3e;fontColor=#ffffff;strokeColor=#0e7a3e;arcSize=4;" value="appointments" vertex="1">
+          <mxGeometry height="238" width="280" x="340" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_1" connectable="0" parent="ap_h" style="text;html=1;strokeColor=#dddddd;fillColor=#e8f5e9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;id  serial  PK&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_2" connectable="0" parent="ap_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fff8e1;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;patient_id  int  FK  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_3" connectable="0" parent="ap_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fff8e1;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;doctor_id  int  FK  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_4" connectable="0" parent="ap_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fff8e1;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;schedule_slot_id  int  FK  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_5" connectable="0" parent="ap_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   scheduled_at  timestamp  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_6" connectable="0" parent="ap_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   status  varchar(20)  DEFAULT &#39;pending&#39;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_7" connectable="0" parent="ap_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   created_at  timestamp  DEFAULT now()&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_note" connectable="0" parent="ap_h" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontSize=10;fontStyle=2;fontColor=#888888;rotatable=0;" value="pending | confirmed | cancelled | completed" vertex="1">
+          <mxGeometry height="26" width="280" y="212" as="geometry" />
+        </mxCell>
+        <mxCell id="pay_h" parent="1" style="swimlane;startSize=30;html=1;align=center;fontStyle=1;fontSize=13;fillColor=#0e7a3e;fontColor=#ffffff;strokeColor=#0e7a3e;arcSize=4;" value="payments" vertex="1">
+          <mxGeometry height="186" width="280" x="340" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="pay_1" connectable="0" parent="pay_h" style="text;html=1;strokeColor=#dddddd;fillColor=#e8f5e9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;id  serial  PK&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pay_2" connectable="0" parent="pay_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fff8e1;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;appointment_id  int  FK  UNIQUE&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="pay_3" connectable="0" parent="pay_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   amount  decimal(10,2)  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="pay_4" connectable="0" parent="pay_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   payment_status  varchar(20)  DEFAULT &#39;pending&#39;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="pay_5" connectable="0" parent="pay_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   payment_date  timestamp&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="pay_note" connectable="0" parent="pay_h" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontSize=10;fontStyle=2;fontColor=#888888;rotatable=0;" value="pending | paid | cancelled" vertex="1">
+          <mxGeometry height="26" width="280" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vs_h" parent="1" style="swimlane;startSize=30;html=1;align=center;fontStyle=1;fontSize=13;fillColor=#0e7a3e;fontColor=#ffffff;strokeColor=#0e7a3e;arcSize=4;" value="visits" vertex="1">
+          <mxGeometry height="212" width="280" x="340" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="vs_1" connectable="0" parent="vs_h" style="text;html=1;strokeColor=#dddddd;fillColor=#e8f5e9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;id  serial  PK&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vs_2" connectable="0" parent="vs_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fff8e1;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;appointment_id  int  FK  UNIQUE&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="vs_3" connectable="0" parent="vs_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   complaints  text&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="vs_4" connectable="0" parent="vs_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   diagnosis  text&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="vs_5" connectable="0" parent="vs_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   recommendations  text&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="vs_6" connectable="0" parent="vs_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   visit_status  varchar(20)  DEFAULT &#39;in_progress&#39;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vs_7" connectable="0" parent="vs_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   created_at  timestamp  DEFAULT now()&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_h" parent="1" style="swimlane;startSize=30;html=1;align=center;fontStyle=1;fontSize=13;fillColor=#6a1a8a;fontColor=#ffffff;strokeColor=#6a1a8a;arcSize=4;" value="schedule" vertex="1">
+          <mxGeometry height="238" width="280" x="670" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_1" connectable="0" parent="sc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f3e5f5;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;id  serial  PK&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_2" connectable="0" parent="sc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fff8e1;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;doctor_id  int  FK  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_3" connectable="0" parent="sc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   date  date  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_4" connectable="0" parent="sc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   start_time  time  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_5" connectable="0" parent="sc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   end_time  time  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_6" connectable="0" parent="sc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   cabinet  varchar(50)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_7" connectable="0" parent="sc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   is_booked  boolean  DEFAULT false&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="sc_note" connectable="0" parent="sc_h" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontSize=10;fontStyle=2;fontColor=#888888;rotatable=0;" value="Временные слоты врачей" vertex="1">
+          <mxGeometry height="26" width="280" y="212" as="geometry" />
+        </mxCell>
+        <mxCell id="vsvc_h" parent="1" style="swimlane;startSize=30;html=1;align=center;fontStyle=1;fontSize=13;fillColor=#6a1a8a;fontColor=#ffffff;strokeColor=#6a1a8a;arcSize=4;" value="visit_services" vertex="1">
+          <mxGeometry height="134" width="280" x="670" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="vsvc_1" connectable="0" parent="vsvc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f3e5f5;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;id  serial  PK&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vsvc_2" connectable="0" parent="vsvc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fff8e1;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;visit_id  int  FK  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="vsvc_3" connectable="0" parent="vsvc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fff8e1;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;service_id  int  FK  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="vsvc_note" connectable="0" parent="vsvc_h" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontSize=10;fontStyle=2;fontColor=#888888;rotatable=0;" value="M:M между visits и services" vertex="1">
+          <mxGeometry height="26" width="280" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="dc_h" parent="1" style="swimlane;startSize=30;html=1;align=center;fontStyle=1;fontSize=13;fillColor=#b54a00;fontColor=#ffffff;strokeColor=#b54a00;arcSize=4;" value="doctors" vertex="1">
+          <mxGeometry height="186" width="280" x="1000" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dc_1" connectable="0" parent="dc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fbe9e7;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;id  serial  PK&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dc_2" connectable="0" parent="dc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   full_name  varchar(255)  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="dc_3" connectable="0" parent="dc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   email  varchar(255)  UNIQUE  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="dc_4" connectable="0" parent="dc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   phone  varchar(20)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="dc_5" connectable="0" parent="dc_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fff8e1;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;specialization_id  int  FK  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="dc_note" connectable="0" parent="dc_h" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontSize=10;fontStyle=2;fontColor=#888888;rotatable=0;" value="Врачи клиники" vertex="1">
+          <mxGeometry height="26" width="280" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_h" parent="1" style="swimlane;startSize=30;html=1;align=center;fontStyle=1;fontSize=13;fillColor=#b54a00;fontColor=#ffffff;strokeColor=#b54a00;arcSize=4;" value="specializations" vertex="1">
+          <mxGeometry height="134" width="280" x="1000" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_1" connectable="0" parent="sp_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fbe9e7;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;id  serial  PK&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_2" connectable="0" parent="sp_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   name  varchar(255)  UNIQUE  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_3" connectable="0" parent="sp_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   description  text&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_note" connectable="0" parent="sp_h" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontSize=10;fontStyle=2;fontColor=#888888;rotatable=0;" value="Справочник специализаций" vertex="1">
+          <mxGeometry height="26" width="280" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="srv_h" parent="1" style="swimlane;startSize=30;html=1;align=center;fontStyle=1;fontSize=13;fillColor=#b54a00;fontColor=#ffffff;strokeColor=#b54a00;arcSize=4;" value="services" vertex="1">
+          <mxGeometry height="134" width="280" x="1000" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="srv_1" connectable="0" parent="srv_h" style="text;html=1;strokeColor=#dddddd;fillColor=#fbe9e7;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;id  serial  PK&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="srv_2" connectable="0" parent="srv_h" style="text;html=1;strokeColor=#dddddd;fillColor=#ffffff;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   name  varchar(255)  UNIQUE  NOT NULL&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="srv_3" connectable="0" parent="srv_h" style="text;html=1;strokeColor=#dddddd;fillColor=#f9f9f9;align=left;verticalAlign=middle;spacingLeft=8;fontSize=11;rotatable=0;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;   description  text&lt;/font&gt;" vertex="1">
+          <mxGeometry height="26" width="280" y="82" as="geometry" />
+        </mxCell>
+        <mxCell id="srv_note" connectable="0" parent="srv_h" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontSize=10;fontStyle=2;fontColor=#888888;rotatable=0;" value="Справочник медицинских услуг" vertex="1">
+          <mxGeometry height="26" width="280" y="108" as="geometry" />
+        </mxCell>
+        <mxCell id="leg" parent="1" style="text;html=1;strokeColor=#cccccc;fillColor=#f8f8f8;align=left;verticalAlign=middle;spacingLeft=10;fontSize=11;rounded=1;" value="&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;PK — первичный ключ&amp;nbsp; FK — внешний ключ&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="380" x="30" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" edge="1" parent="1" source="mr_h" style="endArrow=ERone;startArrow=ERone;html=1;strokeColor=#1060a0;strokeWidth=2;fontSize=11;fontColor=#1060a0;edgeStyle=orthogonalEdgeStyle;" target="pt_h" value="1:1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="165" y="375" />
+              <mxPoint x="165" y="262" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r2" edge="1" parent="1" source="ap_h" style="endArrow=ERone;startArrow=ERmany;html=1;strokeColor=#0e7a3e;strokeWidth=2;fontSize=11;fontColor=#0e7a3e;edgeStyle=orthogonalEdgeStyle;" target="pt_h" value="M:1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="90" />
+              <mxPoint x="290" y="90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r3" edge="1" parent="1" source="ap_h" style="endArrow=ERone;startArrow=ERmany;html=1;strokeColor=#0e7a3e;strokeWidth=2;fontSize=11;fontColor=#0e7a3e;edgeStyle=orthogonalEdgeStyle;" target="dc_h" value="M:1">
+          <mxGeometry relative="1" x="0.8368" y="11" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="789" y="108" />
+              <mxPoint x="789" y="108" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r4" edge="1" parent="1" source="ap_h" style="endArrow=ERone;startArrow=ERmany;html=1;strokeColor=#0e7a3e;strokeWidth=2;fontSize=11;fontColor=#0e7a3e;edgeStyle=orthogonalEdgeStyle;" target="sc_h" value="M:1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="810" y="134" />
+              <mxPoint x="810" y="134" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r5" edge="1" parent="1" source="pay_h" style="endArrow=ERone;startArrow=ERone;html=1;strokeColor=#0e7a3e;strokeWidth=2;fontSize=11;fontColor=#0e7a3e;edgeStyle=orthogonalEdgeStyle;" target="ap_h" value="1:1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="330" />
+              <mxPoint x="480" y="288" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r6" edge="1" parent="1" source="vs_h" style="endArrow=ERone;startArrow=ERone;html=1;strokeColor=#0e7a3e;strokeWidth=2;fontSize=11;fontColor=#0e7a3e;edgeStyle=orthogonalEdgeStyle;" target="ap_h" value="1:1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="560" />
+              <mxPoint x="480" y="516" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r7" edge="1" parent="1" source="sc_h" style="endArrow=ERone;startArrow=ERmany;html=1;strokeColor=#6a1a8a;strokeWidth=2;fontSize=11;fontColor=#6a1a8a;edgeStyle=orthogonalEdgeStyle;" target="dc_h" value="M:1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="108" />
+              <mxPoint x="950" y="108" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r8" edge="1" parent="1" source="dc_h" style="endArrow=ERone;startArrow=ERmany;html=1;strokeColor=#b54a00;strokeWidth=2;fontSize=11;fontColor=#b54a00;edgeStyle=orthogonalEdgeStyle;" target="sp_h" value="M:1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="236" />
+              <mxPoint x="1140" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r9" edge="1" parent="1" source="vsvc_h" style="endArrow=ERone;startArrow=ERmany;html=1;strokeColor=#6a1a8a;strokeWidth=2;fontSize=11;fontColor=#6a1a8a;edgeStyle=orthogonalEdgeStyle;" target="vs_h" value="M:1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="670" y="615" />
+              <mxPoint x="620" y="615" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r10" edge="1" parent="1" source="vsvc_h" style="endArrow=ERone;startArrow=ERmany;html=1;strokeColor=#6a1a8a;strokeWidth=2;fontSize=11;fontColor=#6a1a8a;edgeStyle=orthogonalEdgeStyle;" target="srv_h" value="M:1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="614" />
+              <mxPoint x="1000" y="614" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
