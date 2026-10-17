@@ -1,7 +1,6 @@
 \set doctor_id 'PUT_DOCTOR_UUID_HERE'
 \set patient_id 'PUT_PATIENT_UUID_HERE'
 
--- Запрос расписания врача
 EXPLAIN ANALYZE
 SELECT id, patient_id, doctor_id, booked_service_id, starts_at, ends_at, status
 FROM scheduling.appointments
@@ -10,7 +9,6 @@ WHERE doctor_id = :'doctor_id'::uuid
   AND starts_at < TIMESTAMPTZ '2026-04-08 00:00:00+03'
 ORDER BY starts_at;
 
--- История пациента
 EXPLAIN ANALYZE
 SELECT a.id,
        a.starts_at,
@@ -26,7 +24,6 @@ WHERE a.patient_id = :'patient_id'::uuid
 ORDER BY a.starts_at DESC
 LIMIT 50;
 
--- Просмотр счетов пациента
 EXPLAIN ANALYZE
 SELECT i.id,
        i.status,
@@ -37,7 +34,6 @@ FROM billing.invoices i
 WHERE i.patient_id = :'patient_id'::uuid
 ORDER BY i.issued_at DESC;
 
--- Отчет по выручке врача за период
 EXPLAIN ANALYZE
 SELECT a.doctor_id,
        COUNT(*) AS visit_count,

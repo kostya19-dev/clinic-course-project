@@ -128,10 +128,6 @@ app-gui-status:
 report-build:
 	@cd report && $(LATEX_BIN) -interaction=nonstopmode -halt-on-error main_design.tex >/tmp/clinic_report_build.log && $(LATEX_BIN) -interaction=nonstopmode -halt-on-error main_design.tex >>/tmp/clinic_report_build.log
 
-# Полная сборка РПЗ оставлена отдельно, чтобы на этапе правки конструкторской части
-# не компилировать технологический и исследовательский разделы.
-# report-build:
-# 	@cd report && pdflatex -interaction=nonstopmode -halt-on-error main.tex >/tmp/clinic_report_build.log && pdflatex -interaction=nonstopmode -halt-on-error main.tex >>/tmp/clinic_report_build.log
 
 report-build-full:
 	@cd report && $(LATEX_BIN) -interaction=nonstopmode -halt-on-error main.tex >/tmp/clinic_report_full_build.log && $(LATEX_BIN) -interaction=nonstopmode -halt-on-error main.tex >>/tmp/clinic_report_full_build.log

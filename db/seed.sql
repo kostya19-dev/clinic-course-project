@@ -1,4 +1,3 @@
--- ����������������� �������� ������ ��� ��������� ���������� � ������������ ��������� �������.
 
 INSERT INTO security.users (id, login, password_hash, full_name, email, phone, status)
 VALUES

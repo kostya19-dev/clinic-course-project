@@ -1,6 +1,3 @@
--- Массовое наполнение базы данных детерминированными данными
--- для тестирования производительности и выполнения требований по объему данных.
--- Выполнять после db/schema.sql.
 
 CREATE OR REPLACE FUNCTION pg_temp.make_uuid(p_prefix TEXT, p_seq INTEGER)
 RETURNS UUID
